@@ -13,6 +13,7 @@
 - Hero 明确体重管理知识方向，Evidence Horizon 增加克制的抽象轨道并支持 reduced-motion。
 - 修复浅色主题主按钮对比度和搜索页空状态 heading 层级。
 - section spacing 和移动端 Hero 高度收敛；Playwright 改为生产预览验证。
+- 补强移动菜单断点关闭、短屏滚动、无脚本状态和主题控件初始化；完整 E2E 达到 27/27。
 
 ### Verified
 
