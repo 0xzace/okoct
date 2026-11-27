@@ -122,25 +122,20 @@ test("homepage exposes the editorial sections and truthful empty states", async 
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Reviewed content is being prepared" }),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await expect(
     page.getByRole("heading", { name: "GLP-1 and weight management" }),
-  ).toBeVisible();
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole("heading", { name: "Sources should be traceable" }),
+  ).toHaveCount(0);
   await expect(
     page.getByRole("heading", {
       name: "General knowledge is not personal care",
     }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Sources should be traceable" }),
-  ).toBeVisible();
-  await expect(
     page.getByRole("heading", { name: "Careful reading starts at the source" }),
-  ).toBeVisible();
-  await expect(
-    page.getByText(
-      "No approved health articles are available for publication yet.",
-    ),
   ).toBeVisible();
   await expect(page.locator("body")).not.toContainText("V0.1 test content");
 });

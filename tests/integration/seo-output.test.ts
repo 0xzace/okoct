@@ -69,6 +69,16 @@ describe("generated SEO output", () => {
     expect(html).not.toContain("v0-1-test-content");
   });
 
+  it("does not publish repeated empty homepage sections without reviewed content", () => {
+    const homepage = readOutput("en/index.html");
+
+    expect(homepage).not.toContain("Reviewed content is being prepared");
+    expect(homepage).not.toContain("GLP-1 and weight management");
+    expect(homepage).not.toContain("Sources should be traceable");
+    expect(homepage).toContain("General knowledge is not personal care");
+    expect(homepage).toContain("Careful reading starts at the source");
+  });
+
   it("keeps the not-found page out of search indexes", () => {
     expect(readOutput("404.html")).toContain(
       '<meta name="robots" content="noindex,nofollow"',

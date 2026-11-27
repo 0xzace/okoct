@@ -1,4 +1,6 @@
 ---
+import { getCollection } from "astro:content";
+
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { LOCALE_PREFIXES, SUPPORTED_LOCALES, type Locale } from "../../i18n/config";
 import { getDictionary } from "../../i18n/dictionaries";
@@ -6,13 +8,13 @@ import { getLocalizedPath } from "../../i18n/routes";
 import Container from "../../components/Container.astro";
 import ContentGrid from "../../components/ContentGrid.astro";
 import EditorialStandards from "../../components/EditorialStandards.astro";
-import EmptyState from "../../components/EmptyState.astro";
 import FeaturedContent from "../../components/FeaturedContent.astro";
 import HeroPanel from "../../components/HeroPanel.astro";
 import SafetyNotice from "../../components/SafetyNotice.astro";
 import SearchTrigger from "../../components/SearchTrigger.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import TopicCard from "../../components/TopicCard.astro";
+import { getPublishedArticlesForLocale } from "../../utils/home-content";
 
 export function getStaticPaths() {
   return SUPPORTED_LOCALES.map((locale) => ({
@@ -25,10 +27,15 @@ const { locale } = Astro.props as { locale: Locale };
 const dictionary = getDictionary(locale);
 const aboutPath = getLocalizedPath("about", locale);
 const safetyPath = getLocalizedPath("safety", locale);
+const articleEntries = await getCollection("articles");
+const publishedArticles = getPublishedArticlesForLocale(
+  articleEntries.map((entry) => entry.data),
+  locale,
+);
 ---
 
 <BaseLayout locale={locale} route="home" title={`${dictionary.home.title} — OKOCT Health`} description={dictionary.home.description}>
-  <article class="space-y-24">
+  <article class="home-sections">
     <section>
       <Container>
         <HeroPanel
@@ -72,31 +79,19 @@ const safetyPath = getLocalizedPath("safety", locale);
       </Container>
     </section>
 
-    <section aria-labelledby="featured-title">
-      <Container>
-        <FeaturedContent
-          headingId="featured-title"
-          eyebrow={dictionary.home.featuredEyebrow}
-          title={dictionary.home.featuredTitle}
-          description={dictionary.home.featuredDescription}
-          emptyText={dictionary.home.featuredEmpty}
-        />
-      </Container>
-    </section>
-
-    <section aria-labelledby="glp1-title">
-      <Container>
-        <div class="grid gap-8 rounded-panel border border-line bg-surface-muted p-6 sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <SectionHeading
-            id="glp1-title"
-            eyebrow={dictionary.home.glp1Eyebrow}
-            title={dictionary.home.glp1Title}
-            description={dictionary.home.glp1Description}
+    {publishedArticles.length > 0 && (
+      <section aria-labelledby="featured-title">
+        <Container>
+          <FeaturedContent
+            headingId="featured-title"
+            eyebrow={dictionary.home.featuredEyebrow}
+            title={dictionary.home.featuredTitle}
+            description={dictionary.home.featuredDescription}
+            articles={publishedArticles}
           />
-          <EmptyState title={dictionary.home.glp1Empty} description={dictionary.home.glp1Description} />
-        </div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    )}
 
     <section aria-labelledby="safety-title">
       <Container>
@@ -107,20 +102,6 @@ const safetyPath = getLocalizedPath("safety", locale);
           href={safetyPath}
           linkLabel={dictionary.home.safetyAction}
         />
-      </Container>
-    </section>
-
-    <section aria-labelledby="research-title">
-      <Container>
-        <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-          <SectionHeading
-            id="research-title"
-            eyebrow={dictionary.home.researchEyebrow}
-            title={dictionary.home.researchTitle}
-            description={dictionary.home.researchText}
-          />
-          <EmptyState title={dictionary.home.researchEmpty} description={dictionary.home.researchText} />
-        </div>
       </Container>
     </section>
 

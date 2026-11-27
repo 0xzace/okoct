@@ -1,21 +1,30 @@
 ---
-import EmptyState from "./EmptyState.astro";
+import type { ArticleFrontmatter } from "../schemas/content";
 import SectionHeading from "./SectionHeading.astro";
+
+type FeaturedArticle = Pick<ArticleFrontmatter, "title" | "description">;
 
 interface Props {
   eyebrow: string;
   title: string;
   description: string;
-  emptyText: string;
+  articles: FeaturedArticle[];
   headingId?: string | undefined;
 }
 
-const { eyebrow, title, description, emptyText, headingId } = Astro.props;
+const { eyebrow, title, description, articles, headingId } = Astro.props;
 ---
 
 <section class="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
   <SectionHeading id={headingId} eyebrow={eyebrow} title={title} description={description} />
-  <div class="rounded-panel border border-dashed border-line bg-surface p-6 sm:p-8">
-    <EmptyState title={emptyText} description={description} />
-  </div>
+  <ul class="grid gap-4 sm:grid-cols-2">
+    {articles.map((article) => (
+      <li class="rounded-card border border-line bg-surface p-6 shadow-card">
+        <article>
+          <h3 class="font-display text-xl font-semibold tracking-[-0.02em] text-ink">{article.title}</h3>
+          <p class="mt-3 text-sm leading-6 text-ink-muted">{article.description}</p>
+        </article>
+      </li>
+    ))}
+  </ul>
 </section>

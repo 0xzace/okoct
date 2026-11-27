@@ -53,19 +53,10 @@ export type SiteDictionary = {
     featuredEyebrow: string;
     featuredTitle: string;
     featuredDescription: string;
-    featuredEmpty: string;
-    glp1Eyebrow: string;
-    glp1Title: string;
-    glp1Description: string;
-    glp1Empty: string;
     safetyEyebrow: string;
     safetyTitle: string;
     safetyText: string;
     safetyAction: string;
-    researchEyebrow: string;
-    researchTitle: string;
-    researchText: string;
-    researchEmpty: string;
     standardsEyebrow: string;
     standardsTitle: string;
     standardsText: string;
@@ -161,25 +152,14 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
         },
       ],
       featuredEyebrow: "ความรู้เด่น",
-      featuredTitle: "เนื้อหาที่ผ่านการทบทวนกำลังเตรียมพร้อม",
+      featuredTitle: "เนื้อหาที่ผ่านการทบทวน",
       featuredDescription:
         "เราจะเผยแพร่เฉพาะเนื้อหาที่มีแหล่งอ้างอิงและผ่านการตรวจสอบตามขั้นตอนที่กำหนด",
-      featuredEmpty: "ยังไม่มีบทความสุขภาพที่ผ่านการอนุมัติเพื่อเผยแพร่",
-      glp1Eyebrow: "หัวข้อที่กำลังเตรียม",
-      glp1Title: "GLP-1 และการจัดการน้ำหนัก",
-      glp1Description:
-        "หัวข้อนี้อยู่ในแผนการจัดทำความรู้ทั่วไป เมื่อมีแหล่งข้อมูลและการทบทวนที่เหมาะสม",
-      glp1Empty: "ยังไม่มีบทความที่ผ่านการตรวจสอบในหัวข้อนี้",
       safetyEyebrow: "ขอบเขตและความปลอดภัย",
       safetyTitle: "ความรู้ทั่วไปไม่ใช่การดูแลเฉพาะบุคคล",
       safetyText:
         "เว็บไซต์นี้ไม่วินิจฉัยโรค ไม่ให้คำแนะนำการรักษาหรือขนาดยา ไม่จำหน่ายยา และไม่เก็บข้อมูลสุขภาพที่ละเอียดอ่อน",
       safetyAction: "อ่านขอบเขตความปลอดภัย",
-      researchEyebrow: "พร้อมเมื่อหลักฐานพร้อม",
-      researchTitle: "แหล่งข้อมูลต้องตรวจสอบย้อนกลับได้",
-      researchText:
-        "บทความในอนาคตจะระบุแหล่งอ้างอิง วันที่ตรวจสอบ และข้อจำกัดของข้อมูลอย่างชัดเจน",
-      researchEmpty: "ยังไม่มีชุดข้อมูลหรือบทความวิจัยที่เผยแพร่ในระยะนี้",
       standardsEyebrow: "มาตรฐานบรรณาธิการ",
       standardsTitle: "อ่านอย่างระมัดระวังตั้งแต่ต้นทาง",
       standardsText:
@@ -281,27 +261,14 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
         },
       ],
       featuredEyebrow: "Featured knowledge",
-      featuredTitle: "Reviewed content is being prepared",
+      featuredTitle: "Reviewed knowledge",
       featuredDescription:
         "We publish only material with references and the required review record.",
-      featuredEmpty:
-        "No approved health articles are available for publication yet.",
-      glp1Eyebrow: "Topic in preparation",
-      glp1Title: "GLP-1 and weight management",
-      glp1Description:
-        "This topic is planned for general education when appropriate sources and reviews are ready.",
-      glp1Empty: "No reviewed articles are available for this topic yet.",
       safetyEyebrow: "Scope and safety",
       safetyTitle: "General knowledge is not personal care",
       safetyText:
         "This website does not diagnose conditions, provide treatment or dosage recommendations, sell medicines, or collect sensitive health information.",
       safetyAction: "Read safety boundaries",
-      researchEyebrow: "Ready when the evidence is ready",
-      researchTitle: "Sources should be traceable",
-      researchText:
-        "Future articles will show references, review dates, and the limits of available information.",
-      researchEmpty:
-        "No research collection or medical articles are published at this stage.",
       standardsEyebrow: "Editorial standards",
       standardsTitle: "Careful reading starts at the source",
       standardsText:
@@ -399,23 +366,13 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
         { title: "安全阅读", text: "清楚区分一般知识与个体化照护。" },
       ],
       featuredEyebrow: "精选知识",
-      featuredTitle: "经过审核的内容正在准备中",
+      featuredTitle: "经过审核的知识",
       featuredDescription: "我们只发布带有参考资料并完成必要审核记录的内容。",
-      featuredEmpty: "目前还没有获得发布批准的健康文章。",
-      glp1Eyebrow: "正在准备的主题",
-      glp1Title: "GLP-1 与体重管理",
-      glp1Description:
-        "当合适的来源和审核准备就绪后，我们会提供这个主题的一般性知识。",
-      glp1Empty: "这个主题目前还没有经过审核的文章。",
       safetyEyebrow: "范围与安全",
       safetyTitle: "一般知识不是个体化照护",
       safetyText:
         "本网站不进行疾病诊断，不提供治疗或剂量建议，不销售药品，也不收集敏感健康信息。",
       safetyAction: "阅读安全边界",
-      researchEyebrow: "证据准备好时再发布",
-      researchTitle: "来源应当可以追溯",
-      researchText: "未来文章会清晰列出参考资料、审核日期和现有信息的局限。",
-      researchEmpty: "当前阶段还没有发布研究集合或医学文章。",
       standardsEyebrow: "编辑标准",
       standardsTitle: "从来源开始认真阅读",
       standardsText: "每个页面都要清楚区分教育信息与合格专业人员提供的建议。",
