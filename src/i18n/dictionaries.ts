@@ -25,10 +25,14 @@ export type SiteDictionary = {
     backToHome: string;
   };
   navigation: {
+    label: string;
     home: string;
     about: string;
     safety: string;
     search: string;
+    menu: string;
+    openMenu: string;
+    closeMenu: string;
   };
   home: {
     eyebrow: string;
@@ -114,10 +118,14 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       backToHome: "กลับสู่หน้าแรก",
     },
     navigation: {
+      label: "การนำทางหลัก",
       home: "หน้าแรก",
       about: "เกี่ยวกับเรา",
       safety: "ขอบเขตความปลอดภัย",
       search: "ค้นหา",
+      menu: "เมนู",
+      openMenu: "เปิดเมนู",
+      closeMenu: "ปิดเมนู",
     },
     home: {
       eyebrow: "ความรู้สุขภาพที่เป็นอิสระ",
@@ -220,10 +228,14 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       backToHome: "Back to home",
     },
     navigation: {
+      label: "Primary navigation",
       home: "Home",
       about: "About",
       safety: "Safety boundaries",
       search: "Search",
+      menu: "Menu",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
     },
     home: {
       eyebrow: "Independent health knowledge",
@@ -332,10 +344,14 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       backToHome: "返回首页",
     },
     navigation: {
+      label: "主导航",
       home: "首页",
       about: "关于我们",
       safety: "安全边界",
       search: "搜索",
+      menu: "菜单",
+      openMenu: "打开菜单",
+      closeMenu: "关闭菜单",
     },
     home: {
       eyebrow: "独立健康知识",

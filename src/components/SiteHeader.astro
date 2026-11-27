@@ -26,10 +26,16 @@ const navigationItems = [
 ---
 
 <header class="relative z-[var(--z-header)] border-b border-line bg-surface/95 backdrop-blur">
-  <div class="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-4 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8 lg:px-10">
     <BrandLogo locale={locale} href={getLocalizedPath("home", locale) ?? "/"} />
-    <div class="flex flex-col gap-4 lg:items-end">
-      <nav aria-label={dictionary.navigation.home}>
+    <div class="flex items-center gap-2 lg:gap-5">
+      <a
+        href={getLocalizedPath("search", locale) ?? "#search"}
+        class="transition-standard inline-flex min-h-10 items-center rounded-control px-3 text-sm font-semibold text-brand-strong hover:bg-accent lg:hidden"
+      >
+        {dictionary.navigation.search}
+      </a>
+      <nav aria-label={dictionary.navigation.label} class="hidden lg:block">
         <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
           {navigationItems.map((item) => (
             <li>
@@ -44,10 +50,91 @@ const navigationItems = [
           ))}
         </ul>
       </nav>
-      <div class="flex flex-wrap items-center gap-3 lg:justify-end">
+      <div class="hidden items-center gap-3 lg:flex">
         <LanguageSwitcher locale={locale} route={route} />
-        <ThemeControl dictionary={dictionary} />
+        <ThemeControl dictionary={dictionary} id="theme-select-desktop" />
       </div>
+      <details
+        data-site-menu
+        class="relative lg:hidden"
+      >
+        <summary
+          data-menu-trigger
+          aria-controls="mobile-menu-panel"
+          aria-expanded="false"
+          aria-label={dictionary.navigation.openMenu}
+          data-open-label={dictionary.navigation.openMenu}
+          data-close-label={dictionary.navigation.closeMenu}
+          class="transition-standard inline-flex min-h-10 cursor-pointer list-none items-center rounded-control border border-line bg-surface px-3 text-sm font-semibold text-ink hover:border-brand"
+        >
+          {dictionary.navigation.menu}
+        </summary>
+        <div
+          id="mobile-menu-panel"
+          data-site-menu-panel
+          class="absolute right-0 top-full mt-3 w-[min(20rem,calc(100vw-2.5rem))] rounded-panel border border-line bg-surface p-5 shadow-panel"
+        >
+          <nav aria-label={dictionary.navigation.label}>
+            <ul class="grid gap-1 text-base font-medium">
+              {navigationItems.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    aria-current={item.route === route ? "page" : undefined}
+                    class="transition-standard block rounded-control px-3 py-2 text-ink-muted hover:bg-accent hover:text-brand-strong"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div class="mt-5 grid gap-4 border-t border-line pt-4">
+            <LanguageSwitcher locale={locale} route={route} />
+            <ThemeControl dictionary={dictionary} id="theme-select-mobile" />
+          </div>
+        </div>
+      </details>
     </div>
   </div>
 </header>
+
+<script is:inline>
+  const siteMenu = document.querySelector("[data-site-menu]");
+
+  if (siteMenu instanceof HTMLDetailsElement) {
+    const menuTrigger = siteMenu.querySelector("[data-menu-trigger]");
+    const menuPanel = siteMenu.querySelector("[data-site-menu-panel]");
+
+    if (menuTrigger instanceof HTMLElement && menuPanel instanceof HTMLElement) {
+      const syncMenu = (focusFirstLink = false) => {
+        const isOpen = siteMenu.open;
+        menuTrigger.setAttribute("aria-expanded", String(isOpen));
+        menuTrigger.setAttribute(
+          "aria-label",
+          isOpen
+            ? (menuTrigger.dataset.closeLabel ?? menuTrigger.textContent.trim())
+            : (menuTrigger.dataset.openLabel ?? menuTrigger.textContent.trim()),
+        );
+        document.body.style.overflow = isOpen ? "hidden" : "";
+
+        if (isOpen && focusFirstLink) {
+          const firstLink = menuPanel.querySelector("a");
+
+          if (firstLink instanceof HTMLElement) {
+            firstLink.focus();
+          }
+        }
+      };
+
+      siteMenu.addEventListener("toggle", () => syncMenu(true));
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && siteMenu.open) {
+          siteMenu.open = false;
+          syncMenu();
+          menuTrigger.focus();
+        }
+      });
+    }
+  }
+</script>

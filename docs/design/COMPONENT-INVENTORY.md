@@ -6,7 +6,7 @@
 
 ## 导航组件
 
-`SiteHeader`、`SiteFooter`、`LanguageSwitcher`、`ThemeControl`、`Breadcrumbs`、`SearchTrigger`、`SearchDialog`。
+`SiteHeader`、`SiteFooter`、`LanguageSwitcher`、`ThemeControl`、`Breadcrumbs`、`SearchTrigger`、`SearchDialog`。`SiteHeader` 的移动端导航使用原生 `<details>/<summary>`，脚本增强 Escape、焦点恢复和背景滚动控制；无脚本时仍可展开真实路由。
 
 ## 内容和安全组件
 

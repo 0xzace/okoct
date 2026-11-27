@@ -46,7 +46,7 @@ test("localized home pages expose language-aware metadata and navigation", async
 test("theme control remains keyboard accessible", async ({ page }) => {
   await page.goto("/en/");
 
-  const themeControl = page.locator("[data-theme-control]");
+  const themeControl = page.locator("#theme-select-desktop");
 
   await themeControl.focus();
   await expect(themeControl).toBeFocused();
@@ -74,7 +74,7 @@ test("theme preference persists and focus styling remains visible", async ({
   page,
 }) => {
   await page.goto("/en/");
-  await page.locator("[data-theme-control]").selectOption("dark");
+  await page.locator("#theme-select-desktop").selectOption("dark");
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
   await page.reload();
