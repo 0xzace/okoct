@@ -61,8 +61,6 @@ const navigationItems = [
         <summary
           data-menu-trigger
           aria-controls="mobile-menu-panel"
-          aria-expanded="false"
-          aria-label={dictionary.navigation.openMenu}
           data-open-label={dictionary.navigation.openMenu}
           data-close-label={dictionary.navigation.closeMenu}
           class="transition-standard inline-flex min-h-10 cursor-pointer list-none items-center rounded-control border border-line bg-surface px-3 text-sm font-semibold text-ink hover:border-brand"
@@ -72,7 +70,7 @@ const navigationItems = [
         <div
           id="mobile-menu-panel"
           data-site-menu-panel
-          class="absolute right-0 top-full mt-3 w-[min(20rem,calc(100vw-2.5rem))] rounded-panel border border-line bg-surface p-5 shadow-panel"
+          class="mobile-menu-panel absolute right-0 top-full mt-3 w-[min(20rem,calc(100vw-2.5rem))] rounded-panel border border-line bg-surface p-5 shadow-panel"
         >
           <nav aria-label={dictionary.navigation.label}>
             <ul class="grid gap-1 text-base font-medium">
@@ -128,6 +126,16 @@ const navigationItems = [
       };
 
       siteMenu.addEventListener("toggle", () => syncMenu(true));
+      const desktopMedia = window.matchMedia("(min-width: 1024px)");
+      const closeForDesktop = () => {
+        if (desktopMedia.matches && siteMenu.open) {
+          siteMenu.open = false;
+          syncMenu();
+        }
+      };
+
+      desktopMedia.addEventListener("change", closeForDesktop);
+
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && siteMenu.open) {
           siteMenu.open = false;
@@ -135,6 +143,7 @@ const navigationItems = [
           menuTrigger.focus();
         }
       });
+      syncMenu();
     }
   }
 </script>

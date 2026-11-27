@@ -169,6 +169,12 @@ a.text-on-brand {
   gap: var(--section-md-mobile);
 }
 
+.mobile-menu-panel {
+  max-height: calc(100dvh - 5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
 @media (min-width: 1024px) {
   .home-sections {
     gap: var(--section-lg);

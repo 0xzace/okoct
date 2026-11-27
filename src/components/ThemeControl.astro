@@ -24,62 +24,66 @@ const { dictionary, id = "theme-select" } = Astro.props;
 </div>
 
 <script is:inline>
-  const initializeThemeControls = () => {
-    if (document.documentElement.dataset.themeControlsInitialized === "true") {
-      return;
-    }
-
-    document.documentElement.dataset.themeControlsInitialized = "true";
-
-    const themeControls = Array.from(
-      document.querySelectorAll("[data-theme-control]"),
-    ).filter((control) => control instanceof HTMLSelectElement);
-    const themeStorageKey = "okoct-theme";
-
-    const applyTheme = (value) => {
-      if (value === "system") {
-        document.documentElement.removeAttribute("data-theme");
-      } else {
-        document.documentElement.dataset.theme = value;
+  (() => {
+    const initializeThemeControls = () => {
+      if (
+        document.documentElement.dataset.themeControlsInitialized === "true"
+      ) {
+        return;
       }
+
+      document.documentElement.dataset.themeControlsInitialized = "true";
+
+      const themeControls = Array.from(
+        document.querySelectorAll("[data-theme-control]"),
+      ).filter((control) => control instanceof HTMLSelectElement);
+      const themeStorageKey = "okoct-theme";
+
+      const applyTheme = (value) => {
+        if (value === "system") {
+          document.documentElement.removeAttribute("data-theme");
+        } else {
+          document.documentElement.dataset.theme = value;
+        }
+      };
+
+      let savedTheme;
+
+      try {
+        savedTheme = window.localStorage.getItem(themeStorageKey) ?? "system";
+      } catch {
+        savedTheme = "system";
+      }
+
+      if (!["system", "light", "dark"].includes(savedTheme)) {
+        savedTheme = "system";
+      }
+
+      themeControls.forEach((themeControl) => {
+        themeControl.value = savedTheme;
+        themeControl.addEventListener("change", () => {
+          applyTheme(themeControl.value);
+          themeControls.forEach((control) => {
+            control.value = themeControl.value;
+          });
+
+          try {
+            window.localStorage.setItem(themeStorageKey, themeControl.value);
+          } catch {
+            return;
+          }
+        });
+      });
+
+      applyTheme(savedTheme);
     };
 
-    let savedTheme;
-
-    try {
-      savedTheme = window.localStorage.getItem(themeStorageKey) ?? "system";
-    } catch {
-      savedTheme = "system";
-    }
-
-    if (!["system", "light", "dark"].includes(savedTheme)) {
-      savedTheme = "system";
-    }
-
-    themeControls.forEach((themeControl) => {
-      themeControl.value = savedTheme;
-      themeControl.addEventListener("change", () => {
-        applyTheme(themeControl.value);
-        themeControls.forEach((control) => {
-          control.value = themeControl.value;
-        });
-
-        try {
-          window.localStorage.setItem(themeStorageKey, themeControl.value);
-        } catch {
-          return;
-        }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initializeThemeControls, {
+        once: true,
       });
-    });
-
-    applyTheme(savedTheme);
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initializeThemeControls, {
-      once: true,
-    });
-  } else {
-    initializeThemeControls();
-  }
+    } else {
+      initializeThemeControls();
+    }
+  })();
 </script>
