@@ -53,6 +53,45 @@ test("theme control remains keyboard accessible", async ({ page }) => {
   await expect(themeControl).toHaveAttribute("aria-label", /Theme/i);
 });
 
+test("brand navigation exposes a localized skip link and search entry", async ({
+  page,
+}) => {
+  await page.goto("/zh/");
+
+  await expect(
+    page.getByRole("banner").getByRole("link", { name: "OKOCT Health" }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "跳转到正文" })).toHaveAttribute(
+    "href",
+    "#main-content",
+  );
+  await expect(
+    page.getByRole("banner").getByRole("link", { name: "搜索" }),
+  ).toHaveAttribute("href", "/zh/search/");
+});
+
+test("theme preference persists and focus styling remains visible", async ({
+  page,
+}) => {
+  await page.goto("/en/");
+  await page.locator("[data-theme-control]").selectOption("dark");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+
+  const aboutLink = page
+    .getByRole("banner")
+    .getByRole("link", { name: "About" });
+  await aboutLink.focus();
+  await expect(aboutLink).toBeFocused();
+  await expect
+    .poll(() =>
+      aboutLink.evaluate((element) => getComputedStyle(element).boxShadow),
+    )
+    .not.toBe("none");
+});
+
 test("safety page states non-clinical boundaries", async ({ page }) => {
   await page.goto("/en/safety/");
 

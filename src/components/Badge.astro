@@ -1,0 +1,18 @@
+---
+type Tone = "signal" | "evidence" | "neutral";
+
+interface Props {
+  tone?: Tone;
+}
+
+const { tone = "neutral" } = Astro.props;
+const toneClass = {
+  signal: "border-brand/30 bg-accent text-brand-strong",
+  evidence: "border-evidence/40 bg-evidence/10 text-evidence",
+  neutral: "border-line bg-surface-muted text-ink-muted",
+}[tone];
+---
+
+<span class={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold ${toneClass}`}>
+  <slot />
+</span>

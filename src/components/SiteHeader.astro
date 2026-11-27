@@ -2,6 +2,7 @@
 import { getDictionary } from "../i18n/config";
 import { getLocalizedPath, type RouteKey } from "../i18n/routes";
 import type { Locale } from "../i18n/config";
+import BrandLogo from "./BrandLogo.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import ThemeControl from "./ThemeControl.astro";
 
@@ -16,6 +17,7 @@ const navigationItems = [
   { route: "home" as const, label: dictionary.navigation.home },
   { route: "about" as const, label: dictionary.navigation.about },
   { route: "safety" as const, label: dictionary.navigation.safety },
+  { route: "search" as const, label: dictionary.navigation.search },
 ].flatMap((item) => {
   const href = getLocalizedPath(item.route, locale);
 
@@ -23,24 +25,26 @@ const navigationItems = [
 });
 ---
 
-<header class="border-b border-line bg-surface-raised">
-  <div class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-4 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
-    <a href={getLocalizedPath("home", locale)} class="text-lg font-bold tracking-tight text-brand-strong">
-      OKOCT Health
-    </a>
-    <div class="flex flex-col gap-3 lg:items-end">
+<header class="relative z-[var(--z-header)] border-b border-line bg-surface/95 backdrop-blur">
+  <div class="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-4 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
+    <BrandLogo locale={locale} href={getLocalizedPath("home", locale) ?? "/"} />
+    <div class="flex flex-col gap-4 lg:items-end">
       <nav aria-label={dictionary.navigation.home}>
-        <ul class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+        <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
           {navigationItems.map((item) => (
             <li>
-              <a href={item.href} class="underline-offset-4 hover:underline">
+              <a
+                href={item.href}
+                aria-current={item.route === route ? "page" : undefined}
+                class="transition-standard rounded-control px-2 py-1 text-ink-muted underline-offset-4 hover:bg-accent hover:text-brand-strong"
+              >
                 {item.label}
               </a>
             </li>
           ))}
         </ul>
       </nav>
-      <div class="flex flex-wrap items-center gap-4">
+      <div class="flex flex-wrap items-center gap-3 lg:justify-end">
         <LanguageSwitcher locale={locale} route={route} />
         <ThemeControl dictionary={dictionary} />
       </div>

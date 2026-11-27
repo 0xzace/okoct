@@ -18,7 +18,7 @@ const languageLinks = getRouteLocales(route).flatMap((candidate) => {
 ---
 
 <nav aria-label={dictionary.languageSwitcherLabel}>
-  <ul class="flex flex-wrap items-center gap-2 text-sm">
+  <ul class="flex flex-wrap items-center gap-1 rounded-pill border border-line bg-surface-muted p-1 text-sm">
     {languageLinks.map((languageLink) => (
       <li>
         <a
@@ -26,7 +26,12 @@ const languageLinks = getRouteLocales(route).flatMap((candidate) => {
           hreflang={languageLink.locale}
           lang={languageLink.locale}
           aria-current={languageLink.locale === locale ? "page" : undefined}
-          class="rounded-md px-2 py-1 underline-offset-4 hover:underline"
+          class:list={[
+            "transition-standard inline-flex min-h-8 items-center rounded-pill px-3 py-1 underline-offset-4",
+            languageLink.locale === locale
+              ? "bg-surface text-ink shadow-sm"
+              : "text-ink-muted hover:bg-surface hover:text-brand-strong",
+          ]}
         >
           {getDictionary(languageLink.locale).languageName}
         </a>

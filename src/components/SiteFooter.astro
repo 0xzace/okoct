@@ -2,6 +2,7 @@
 import { getDictionary } from "../i18n/config";
 import { getLocalizedPath } from "../i18n/routes";
 import type { Locale } from "../i18n/config";
+import BrandLogo from "./BrandLogo.astro";
 
 interface Props {
   locale: Locale;
@@ -10,11 +11,25 @@ interface Props {
 const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 const safetyPath = getLocalizedPath("safety", locale);
+const aboutPath = getLocalizedPath("about", locale);
+const searchPath = getLocalizedPath("search", locale);
 ---
 
-<footer class="border-t border-line bg-surface-raised">
-  <div class="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-6 text-sm text-ink-muted sm:px-8 sm:flex-row sm:items-center sm:justify-between">
-    <p>{dictionary.footer.disclaimer}</p>
-    {safetyPath && <a href={safetyPath} class="underline-offset-4 hover:underline">{dictionary.navigation.safety}</a>}
+<footer class="border-t border-line bg-surface">
+  <div class="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[1.2fr_1fr] lg:px-10">
+    <div>
+      <BrandLogo locale={locale} href={getLocalizedPath("home", locale) ?? "/"} />
+      <p class="mt-5 max-w-sm text-sm leading-6 text-ink-muted">{dictionary.footer.disclaimer}</p>
+    </div>
+    <div class="lg:justify-self-end">
+      <p class="text-sm font-semibold text-ink">{dictionary.footer.status}</p>
+      <nav aria-label={dictionary.navigation.home} class="mt-4">
+        <ul class="flex flex-wrap gap-x-5 gap-y-3 text-sm">
+          {aboutPath && <li><a href={aboutPath} class="underline-offset-4 hover:underline">{dictionary.navigation.about}</a></li>}
+          {safetyPath && <li><a href={safetyPath} class="underline-offset-4 hover:underline">{dictionary.navigation.safety}</a></li>}
+          {searchPath && <li><a href={searchPath} class="underline-offset-4 hover:underline">{dictionary.navigation.search}</a></li>}
+        </ul>
+      </nav>
+    </div>
   </div>
 </footer>

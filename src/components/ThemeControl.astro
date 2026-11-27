@@ -14,7 +14,7 @@ const { dictionary } = Astro.props;
     id="theme-select"
     data-theme-control
     aria-label={dictionary.theme.label}
-    class="rounded-md border border-line bg-surface-raised px-2 py-1 text-sm text-ink"
+    class="transition-standard min-h-9 rounded-control border border-line bg-surface px-3 py-1 text-sm text-ink hover:border-brand"
   >
     <option value="system">{dictionary.theme.system}</option>
     <option value="light">{dictionary.theme.light}</option>

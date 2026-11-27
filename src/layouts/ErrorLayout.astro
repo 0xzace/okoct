@@ -1,0 +1,25 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import type { Locale } from "../i18n/config";
+
+interface Props {
+  locale?: Locale;
+  title: string;
+  description: string;
+}
+
+const { locale = "en", title, description } = Astro.props;
+---
+
+<BaseLayout
+  locale={locale}
+  route="home"
+  canonicalPath="/404/"
+  indexable={false}
+  title={title}
+  description={description}
+>
+  <section class="mx-auto max-w-2xl">
+    <slot />
+  </section>
+</BaseLayout>
