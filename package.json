@@ -23,7 +23,7 @@
     "test:e2e": "playwright test",
     "validate:content": "node scripts/validate-content.mjs",
     "validate:seo": "node scripts/validate-build.mjs",
-    "verify:static": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm validate:content && pnpm test:unit && pnpm test:integration && pnpm build && pnpm validate:seo",
+    "verify:static": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm validate:content && pnpm test:unit && pnpm build && pnpm test:integration && pnpm validate:seo",
     "verify": "pnpm verify:static && pnpm test:e2e"
   },
   "dependencies": {
