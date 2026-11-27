@@ -26,7 +26,7 @@ test("dark theme and reduced motion preserve readable content", async ({
   await expect(page.locator("html")).toHaveCSS("color-scheme", "dark");
   await expect(page.locator("html")).toHaveCSS("scroll-behavior", "auto");
   await expect(
-    page.getByRole("heading", { name: /在完整语境中理解健康信息/ }),
+    page.getByRole("heading", { name: /理解体重管理的科学/ }),
   ).toBeVisible();
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
@@ -66,6 +66,41 @@ test("captures desktop, mobile, Thai, Chinese and dark theme artifacts", async (
   await page.goto("/zh/");
   await page.screenshot({
     path: "output/playwright/v0-2-1-home-zh-mobile-dark.png",
+    fullPage: true,
+  });
+
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/en/");
+  await page.screenshot({
+    path: "output/playwright/v0-2-1-home-en-desktop-dark.png",
+    fullPage: true,
+  });
+
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.goto("/th/");
+  await page.screenshot({
+    path: "output/playwright/v0-2-1-home-th-desktop-light.png",
+    fullPage: true,
+  });
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/zh/");
+  await page.screenshot({
+    path: "output/playwright/v0-2-1-home-zh-mobile-light.png",
+    fullPage: true,
+  });
+
+  await page.goto("/en/");
+  await page.locator("[data-site-menu] summary").click();
+  await page.screenshot({
+    path: "output/playwright/v0-2-1-mobile-menu-open.png",
+    fullPage: true,
+  });
+
+  await page.goto("/en/search/");
+  await page.screenshot({
+    path: "output/playwright/v0-2-1-search-en.png",
     fullPage: true,
   });
 });

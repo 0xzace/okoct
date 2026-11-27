@@ -7,14 +7,15 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: "list",
   use: {
-    baseURL: "http://127.0.0.1:4321",
+    baseURL: "http://127.0.0.1:4322",
     trace: "retain-on-failure",
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: "pnpm dev --host 127.0.0.1 --ignore-lock",
-    url: "http://127.0.0.1:4321/th/",
-    reuseExistingServer: !process.env.CI,
+    command:
+      "pnpm build && pnpm exec astro preview --host 127.0.0.1 --port 4322 && trap 'pnpm exec astro preview stop >/dev/null 2>&1 || true' EXIT && tail -f /dev/null",
+    url: "http://127.0.0.1:4322/th/",
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });

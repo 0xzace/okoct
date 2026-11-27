@@ -33,4 +33,5 @@ test("dark theme and reduced motion keep the abstract hero readable", async ({
     "aria-hidden",
     "true",
   );
+  await expect(page.locator("astro-dev-toolbar")).toHaveCount(0);
 });

@@ -147,6 +147,10 @@ a {
   color: var(--color-brand-strong);
 }
 
+a.text-on-brand {
+  color: var(--color-on-brand);
+}
+
 :where(a, button, select, input, textarea, summary):focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);

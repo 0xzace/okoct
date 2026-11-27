@@ -3,12 +3,22 @@ interface Props {
   title: string;
   description: string;
   class?: string;
+  headingLevel?: "h2" | "h3";
 }
 
-const { title, description, class: className = "" } = Astro.props;
+const {
+  title,
+  description,
+  class: className = "",
+  headingLevel = "h3",
+} = Astro.props;
 ---
 
 <div role="status" class={`border-l-2 border-evidence pl-5 ${className}`}>
-  <h3 class="text-lg font-semibold text-ink">{title}</h3>
+  {headingLevel === "h2" ? (
+    <h2 class="text-lg font-semibold text-ink">{title}</h2>
+  ) : (
+    <h3 class="text-lg font-semibold text-ink">{title}</h3>
+  )}
   <p class="mt-2 text-sm leading-6 text-ink-muted">{description}</p>
 </div>

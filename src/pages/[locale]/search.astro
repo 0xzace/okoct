@@ -35,7 +35,11 @@ const homePath = getLocalizedPath("home", locale);
         <p class="mt-5 text-lg leading-8 text-ink-muted">{dictionary.search.description}</p>
       </header>
       <SearchDialog locale={locale} />
-      <EmptyState title={dictionary.search.hint} description={dictionary.search.description} />
+      <EmptyState
+        title={dictionary.search.hint}
+        description={dictionary.search.description}
+        headingLevel="h2"
+      />
     </section>
   </Container>
 </BaseLayout>
