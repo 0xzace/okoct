@@ -12,6 +12,12 @@ describe("SEO metadata", () => {
     );
   });
 
+  it("rejects URLs outside the configured site origin", () => {
+    expect(() => toAbsoluteUrl("https://example.com/unsafe")).toThrow(
+      /configured site origin/,
+    );
+  });
+
   it("creates a self-referencing canonical and reciprocal alternates", () => {
     const metadata = buildSeoMetadata({
       route: "about",
