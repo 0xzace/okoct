@@ -15,6 +15,7 @@ import SearchTrigger from "../../components/SearchTrigger.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import TopicCard from "../../components/TopicCard.astro";
 import { getPublishedArticlesForLocale } from "../../utils/home-content";
+import { PUBLICATION_CONTEXT } from "../../content-engine/repository/publication-context";
 
 export function getStaticPaths() {
   return SUPPORTED_LOCALES.map((locale) => ({
@@ -31,6 +32,7 @@ const articleEntries = await getCollection("articles");
 const publishedArticles = getPublishedArticlesForLocale(
   articleEntries.map((entry) => entry.data),
   locale,
+  PUBLICATION_CONTEXT,
 );
 ---
 

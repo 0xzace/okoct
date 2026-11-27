@@ -15,23 +15,33 @@ import { getDictionary } from "../../../i18n/dictionaries";
 import { getLocalizedPath } from "../../../i18n/routes";
 import { getPublicArticlePaths } from "../../../content-engine/page-paths";
 import { articleEntitySchema } from "../../../content-engine/schemas/entities";
+import { getContentHreflangLinks } from "../../../seo/content";
+import type { AlternateLink } from "../../../seo/types";
+import { PUBLICATION_CONTEXT } from "../../../content-engine/repository/publication-context";
 
 export async function getStaticPaths() {
-  const emptyPublicationContext = { authors: [], reviewers: [], references: [], reviews: [], approvals: [] };
   const entries = await getCollection("articles");
   const articles = entries
     .map((entry) => articleEntitySchema.safeParse(entry.data).success ? articleEntitySchema.parse(entry.data) : undefined)
     .filter((entry): entry is NonNullable<typeof entry> => entry !== undefined);
 
   return SUPPORTED_LOCALES.flatMap((locale) =>
-    getPublicArticlePaths(articles, emptyPublicationContext, locale).map((path) => ({
+    getPublicArticlePaths(articles, PUBLICATION_CONTEXT, locale).map((path) => ({
       params: { locale: LOCALE_PREFIXES[locale], slug: path.slug },
-      props: { article: path.article, entry: entries.find((entry) => entry.data.slug === path.slug) },
+      props: {
+        article: path.article,
+        entry: entries.find((entry) => entry.data.slug === path.slug),
+        alternates: getContentHreflangLinks(path.article.translationKey, articles, PUBLICATION_CONTEXT),
+      },
     })),
   );
 }
 
-const { article, entry } = Astro.props as { article: NonNullable<ReturnType<typeof articleEntitySchema.parse>>; entry: Awaited<ReturnType<typeof getCollection<"articles">>>[number] };
+const { article, entry, alternates } = Astro.props as {
+  article: NonNullable<ReturnType<typeof articleEntitySchema.parse>>;
+  entry: Awaited<ReturnType<typeof getCollection<"articles">>>[number];
+  alternates: AlternateLink[];
+};
 const locale = article.locale as Locale;
 const dictionary = getDictionary(locale);
 const renderedHtml = entry.rendered?.html ?? "";
@@ -46,6 +56,7 @@ const formatDate = (value: Date | null | undefined) => value?.toISOString().slic
   canonicalPath={articlePath}
   title={`${article.title} — OKOCT Health`}
   description={article.description}
+  alternates={alternates}
   breadcrumbs={[{ name: dictionary.navigation.home, url: homePath }, { name: article.title, url: articlePath }]}
 >
   <ArticleHeader eyebrow={article.type} title={article.title} description={article.summary} />

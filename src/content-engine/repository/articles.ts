@@ -1,6 +1,7 @@
 import type { Locale } from "../../i18n/config";
 import type { ArticleEntity, Reference } from "../schemas/entities";
 import { getEntityById, type EntityRepositoryContext } from "./entities";
+import { evaluatePublication } from "../publication/gate";
 
 export type ArticleRepositoryContext = EntityRepositoryContext;
 export type ArticleFilters = {
@@ -20,13 +21,22 @@ function isPublicArticle(article: ArticleEntity): boolean {
   );
 }
 
+function isProductionArticle(
+  article: ArticleEntity,
+  context: ArticleRepositoryContext,
+): boolean {
+  return context.publication
+    ? evaluatePublication(article, context.publication).allowed
+    : isPublicArticle(article);
+}
+
 export function getArticle(
   id: string,
   context: ArticleRepositoryContext,
 ): ArticleEntity | undefined {
   const article = context.articles.find((entry) => entry.id === id);
 
-  return article && isPublicArticle(article) ? article : undefined;
+  return article && isProductionArticle(article, context) ? article : undefined;
 }
 
 export function listArticles(
@@ -34,7 +44,7 @@ export function listArticles(
   context: ArticleRepositoryContext,
 ): ArticleEntity[] {
   return context.articles.filter((article) => {
-    if (!isPublicArticle(article)) return false;
+    if (!isProductionArticle(article, context)) return false;
     if (filters.locale && article.locale !== filters.locale) return false;
     if (filters.topicId && article.topicId !== filters.topicId) return false;
     if (filters.clusterId && article.clusterId !== filters.clusterId)

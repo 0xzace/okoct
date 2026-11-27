@@ -6,6 +6,7 @@ import type {
   Reviewer,
   Topic,
 } from "../schemas/entities";
+import type { PublicationContext } from "../publication/gate";
 
 export type EntityRepositoryContext = {
   articles: readonly ArticleEntity[];
@@ -14,6 +15,7 @@ export type EntityRepositoryContext = {
   authors?: readonly Author[];
   reviewers?: readonly Reviewer[];
   references?: readonly Reference[];
+  publication?: PublicationContext;
 };
 
 export function getEntityById<T extends { id: string }>(

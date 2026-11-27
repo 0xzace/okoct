@@ -1,7 +1,7 @@
 import { LOCALE_PREFIXES, type Locale } from "../i18n/config";
-import { getPublishedTranslationGroup } from "../content-engine/translations";
 import type { ArticleEntity } from "../content-engine/schemas/entities";
 import type { PublicationContext } from "../content-engine/publication/gate";
+import { filterPublicBuild } from "../content-engine/publication/build-filter";
 import type { AlternateLink } from "./types";
 import { toAbsoluteUrl } from "./urls";
 
@@ -10,10 +10,9 @@ export function getContentHreflangLinks(
   articles: readonly ArticleEntity[],
   context: PublicationContext,
 ): AlternateLink[] {
-  const links = getPublishedTranslationGroup(translationKey, {
-    ...context,
-    articles,
-  });
+  const links = filterPublicBuild(articles, context).filter(
+    (article) => article.translationKey === translationKey,
+  );
   const seen = new Set<Locale>();
 
   return links.flatMap((article) => {

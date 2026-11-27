@@ -9,9 +9,9 @@ import { getLocalizedPath } from "../../../i18n/routes";
 import { getPublicTopicPaths } from "../../../content-engine/page-paths";
 import { articleEntitySchema, type Topic } from "../../../content-engine/schemas/entities";
 import { INITIAL_TOPICS } from "../../../content-engine/data/planning";
+import { PUBLICATION_CONTEXT } from "../../../content-engine/repository/publication-context";
 
 export async function getStaticPaths() {
-  const emptyPublicationContext = { authors: [], reviewers: [], references: [], reviews: [], approvals: [] };
   const entries = await getCollection("articles");
   const articles = entries
     .map((entry) => articleEntitySchema.safeParse(entry.data).success ? articleEntitySchema.parse(entry.data) : undefined)
@@ -19,7 +19,7 @@ export async function getStaticPaths() {
   const topics = INITIAL_TOPICS as Topic[];
 
   return SUPPORTED_LOCALES.flatMap((locale) =>
-    getPublicTopicPaths(topics, articles, emptyPublicationContext, locale).map((path) => ({
+    getPublicTopicPaths(topics, articles, PUBLICATION_CONTEXT, locale).map((path) => ({
       params: { locale: LOCALE_PREFIXES[locale], topic: path.slug },
       props: { topic: path.topic, locale },
     })),
