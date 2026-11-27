@@ -74,4 +74,14 @@ describe("generated SEO output", () => {
       '<meta name="robots" content="noindex,nofollow"',
     );
   });
+
+  it("keeps the localized search page out of the sitemap", () => {
+    const searchPage = readOutput("th/search/index.html");
+    const sitemap = readOutput("sitemap.xml");
+
+    expect(searchPage).toContain(
+      '<meta name="robots" content="noindex,nofollow"',
+    );
+    expect(sitemap).not.toContain("https://okoct.com/th/search/");
+  });
 });

@@ -1,0 +1,147 @@
+---
+import type { Locale } from "../i18n/config";
+import { getDictionary } from "../i18n/dictionaries";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dictionary = getDictionary(locale);
+const inputId = `search-page-query-${locale}`;
+---
+
+<div
+  data-pagefind-search
+  data-loading-label={dictionary.search.loading}
+  data-no-results-label={dictionary.search.noResults}
+  data-error-label={dictionary.search.error}
+  data-hint-label={dictionary.search.hint}
+>
+  <form role="search" aria-label={dictionary.search.label} class="rounded-panel border border-line bg-surface p-5 shadow-card sm:p-6">
+    <label for={inputId} class="text-sm font-semibold text-ink">{dictionary.search.label}</label>
+    <div class="mt-3 flex flex-col gap-3 sm:flex-row">
+      <input
+        id={inputId}
+        name="q"
+        type="search"
+        placeholder={dictionary.search.placeholder}
+        class="min-h-11 min-w-0 flex-1 rounded-control border border-line bg-surface-muted px-4 text-ink placeholder:text-ink-muted"
+      />
+      <button
+        type="submit"
+        class="transition-standard inline-flex min-h-11 items-center justify-center rounded-control border border-brand bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:border-brand-strong hover:bg-brand-strong"
+      >
+        {dictionary.search.submit}
+      </button>
+    </div>
+    <p data-search-status aria-live="polite" class="mt-3 min-h-6 text-sm leading-6 text-ink-muted">
+      {dictionary.search.hint}
+    </p>
+  </form>
+  <div data-search-results class="mt-8" hidden></div>
+</div>
+
+<script is:inline>
+  document.querySelectorAll("[data-pagefind-search]").forEach((container) => {
+    const form = container.querySelector("form");
+    const input = container.querySelector("input[name='q']");
+    const status = container.querySelector("[data-search-status]");
+    const results = container.querySelector("[data-search-results]");
+
+    if (!(form instanceof HTMLFormElement) || !(input instanceof HTMLInputElement) || !(status instanceof HTMLElement) || !(results instanceof HTMLElement)) {
+      return;
+    }
+
+    const loadingLabel = container.dataset.loadingLabel ?? "Loading";
+    const noResultsLabel = container.dataset.noResultsLabel ?? "No results";
+    const errorLabel = container.dataset.errorLabel ?? "Search error";
+
+    const renderResults = (items) => {
+      results.replaceChildren();
+
+      if (items.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "border-l-2 border-evidence pl-5 text-sm leading-6 text-ink-muted";
+        empty.textContent = noResultsLabel;
+        results.append(empty);
+        results.hidden = false;
+        return;
+      }
+
+      const list = document.createElement("ul");
+      list.className = "grid gap-4";
+
+      items.forEach((item) => {
+        const entry = document.createElement("li");
+        entry.className = "rounded-card border border-line bg-surface p-5 shadow-card";
+        const link = document.createElement("a");
+        link.className = "font-semibold text-brand-strong underline-offset-4 hover:underline";
+        link.href = item.url;
+        link.textContent = item.title || item.url;
+        const excerpt = document.createElement("p");
+        excerpt.className = "mt-2 text-sm leading-6 text-ink-muted";
+        excerpt.textContent = (item.excerpt || "").replace(/<[^>]*>/g, "");
+        entry.append(link, excerpt);
+        list.append(entry);
+      });
+
+      results.append(list);
+      results.hidden = false;
+    };
+
+    const runSearch = async (query) => {
+      const normalizedQuery = query.trim();
+
+      if (!normalizedQuery) {
+        results.hidden = true;
+        status.textContent = container.dataset.hintLabel ?? status.textContent;
+        return;
+      }
+
+      status.textContent = loadingLabel;
+
+      try {
+        const pagefind = await import("/pagefind/pagefind.js");
+        const response = await pagefind.search(normalizedQuery);
+        const data = await Promise.all(
+          response.results.slice(0, 10).map(async (result) => {
+            const item = await result.data();
+            return {
+              title: item.meta?.title ?? "",
+              url: item.url,
+              excerpt: item.excerpt ?? "",
+            };
+          }),
+        );
+        renderResults(data);
+        status.textContent = `${data.length} result${data.length === 1 ? "" : "s"}`;
+      } catch {
+        results.hidden = true;
+        status.textContent = errorLabel;
+      }
+    };
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const query = input.value;
+      const url = new URL(window.location.href);
+
+      if (query.trim()) {
+        url.searchParams.set("q", query.trim());
+      } else {
+        url.searchParams.delete("q");
+      }
+
+      window.history.replaceState({}, "", url);
+      runSearch(query);
+    });
+
+    const initialQuery = new URLSearchParams(window.location.search).get("q") ?? "";
+    input.value = initialQuery;
+
+    if (initialQuery) {
+      runSearch(initialQuery);
+    }
+  });
+</script>

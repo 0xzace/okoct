@@ -1,0 +1,25 @@
+---
+interface Props {
+  publishedAt?: string | undefined;
+  updatedAt?: string | undefined;
+  publishedLabel?: string | undefined;
+  updatedLabel?: string | undefined;
+}
+
+const { publishedAt, updatedAt, publishedLabel = "Published", updatedLabel = "Updated" } = Astro.props;
+const items = [
+  publishedAt ? { label: publishedLabel, value: publishedAt } : undefined,
+  updatedAt ? { label: updatedLabel, value: updatedAt } : undefined,
+].filter((item): item is { label: string; value: string } => Boolean(item));
+---
+
+{items.length > 0 && (
+  <dl class="mt-6 flex flex-wrap gap-x-6 gap-y-3 border-y border-line py-4 text-sm text-ink-muted">
+    {items.map((item) => (
+      <div>
+        <dt class="font-semibold text-ink">{item.label}</dt>
+        <dd class="mt-1">{item.value}</dd>
+      </div>
+    ))}
+  </dl>
+)}

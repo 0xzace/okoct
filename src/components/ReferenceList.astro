@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  sources: string[];
+}
+
+const { title, sources } = Astro.props;
+---
+
+{sources.length > 0 && (
+  <section aria-labelledby="reference-list-title" class="mt-10 border-t border-line pt-6">
+    <h2 id="reference-list-title" class="font-display text-2xl font-semibold text-ink">{title}</h2>
+    <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm leading-6 text-ink-muted">
+      {sources.map((source) => (
+        <li><a href={source} rel="noreferrer" class="break-words underline-offset-4 hover:underline">{source}</a></li>
+      ))}
+    </ol>
+  </section>
+)}

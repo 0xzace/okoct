@@ -1,0 +1,17 @@
+---
+interface Props {
+  name?: string | undefined;
+  label: string;
+  description?: string | undefined;
+}
+
+const { name, label, description } = Astro.props;
+---
+
+{name && (
+  <aside class="rounded-card border border-line bg-surface p-5 shadow-card" aria-label={label}>
+    <p class="text-sm font-semibold text-ink">{label}</p>
+    <p class="mt-2 text-base text-ink">{name}</p>
+    {description && <p class="mt-2 text-sm leading-6 text-ink-muted">{description}</p>}
+  </aside>
+)}

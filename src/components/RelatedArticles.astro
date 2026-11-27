@@ -1,0 +1,28 @@
+---
+import EmptyState from "./EmptyState.astro";
+
+type RelatedArticle = { title: string; href: string };
+
+interface Props {
+  title: string;
+  emptyText: string;
+  articles?: RelatedArticle[] | undefined;
+}
+
+const { title, emptyText, articles = [] } = Astro.props;
+---
+
+<section aria-labelledby="related-articles-title" class="mt-12 border-t border-line pt-8">
+  <h2 id="related-articles-title" class="font-display text-2xl font-semibold text-ink">{title}</h2>
+  {articles.length > 0 ? (
+    <ul class="mt-5 grid gap-4 sm:grid-cols-2">
+      {articles.map((article) => (
+        <li class="rounded-card border border-line bg-surface p-5 shadow-card">
+          <a href={article.href} class="font-semibold text-brand-strong underline-offset-4 hover:underline">{article.title}</a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <EmptyState title={emptyText} description="" class="mt-5" />
+  )}
+</section>

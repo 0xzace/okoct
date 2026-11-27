@@ -158,3 +158,25 @@ test("Thai and Chinese homepages keep localized content within the viewport", as
     await expect(page.getByRole("main")).toBeVisible();
   }
 });
+
+test("search page is explicit about its indexability and content state", async ({
+  page,
+}) => {
+  await page.goto("/en/search/");
+
+  await expect(
+    page.getByRole("heading", { name: "Search knowledge" }),
+  ).toBeVisible();
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+    "content",
+    "noindex,nofollow",
+  );
+  await expect(
+    page.getByRole("heading", {
+      name: /No approved health articles are published yet/i,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("search", { name: "Search OKOCT Health" }),
+  ).toBeVisible();
+});
