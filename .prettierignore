@@ -1,8 +1,4 @@
-node_modules
-dist
-.astro
-coverage
-playwright-report
-test-results
-.superpowers
+.playwright-cli/
+.superpowers/
 pnpm-lock.yaml
+output/playwright/*.png

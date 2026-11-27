@@ -39,6 +39,13 @@ export type SiteDictionary = {
     searchLabel: string;
     searchPlaceholder: string;
     searchHint: string;
+    horizon: {
+      label: string;
+      step: string;
+      source: string;
+      context: string;
+      review: string;
+    };
     topicEyebrow: string;
     topicTitle: string;
     topicDescription: string;
@@ -127,6 +134,13 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       searchLabel: "ค้นหาความรู้",
       searchPlaceholder: "ค้นหาข้อมูลที่เผยแพร่แล้ว",
       searchHint: "การค้นหาจะเริ่มมีผลเมื่อมีเนื้อหาที่ผ่านการตรวจสอบเผยแพร่",
+      horizon: {
+        label: "เส้นขอบฟ้าของหลักฐาน",
+        step: "01—03",
+        source: "แหล่งข้อมูล",
+        context: "บริบท",
+        review: "การทบทวน",
+      },
       topicEyebrow: "สำรวจตามหัวข้อ",
       topicTitle: "เริ่มจากคำถามที่คุณต้องการเข้าใจ",
       topicDescription:
@@ -236,6 +250,13 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       searchLabel: "Search knowledge",
       searchPlaceholder: "Search published knowledge",
       searchHint: "Search will become useful as reviewed content is published.",
+      horizon: {
+        label: "Evidence horizon",
+        step: "01—03",
+        source: "Source",
+        context: "Context",
+        review: "Review",
+      },
       topicEyebrow: "Explore by topic",
       topicTitle: "Start with the question you want to understand",
       topicDescription:
@@ -353,6 +374,13 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       searchLabel: "搜索知识",
       searchPlaceholder: "搜索已发布的知识",
       searchHint: "随着经过审核的内容发布，搜索会逐渐变得有用。",
+      horizon: {
+        label: "证据地平线",
+        step: "01—03",
+        source: "来源",
+        context: "语境",
+        review: "审核",
+      },
       topicEyebrow: "按主题探索",
       topicTitle: "从你想理解的问题开始",
       topicDescription: "这些主题是阅读框架，不是个体化治疗或诊断建议。",

@@ -36,6 +36,7 @@ describe("internationalization", () => {
       expect(dictionary.home.topicCards).toHaveLength(3);
       expect(dictionary.home.standardsItems).toHaveLength(3);
       expect(dictionary.home.searchPlaceholder.length).toBeGreaterThan(0);
+      expect(dictionary.home.horizon.label.length).toBeGreaterThan(0);
       expect(dictionary.search.noResults.length).toBeGreaterThan(0);
     }
 

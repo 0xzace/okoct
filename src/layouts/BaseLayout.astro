@@ -84,7 +84,7 @@ const jsonLd = [
       {dictionary.ui.skipToContent}
     </a>
     <SiteHeader locale={locale} route={route} />
-    <main id="main-content" class="flex-1 py-10 sm:py-14 lg:py-20">
+    <main id="main-content" tabindex="-1" class="flex-1 py-10 outline-none sm:py-14 lg:py-20">
       <Breadcrumbs items={breadcrumbs} />
       <slot />
     </main>
