@@ -44,3 +44,16 @@
 - [ ] Search Console 验证和 sitemap 提交 — PENDING
 - [ ] 实验室和真实用户 Core Web Vitals 测量 — PENDING
 - [ ] 生产发布授权 — PENDING
+
+## V0.4 Technical SEO 工程门
+
+- [x] SEO 架构、规则等级和质量门禁文档 — VERIFIED
+- [x] 本地 dist 爬取和页面快照 — VERIFIED
+- [x] metadata、indexability、canonical、sitemap、robots 校验 — VERIFIED
+- [x] JSON-LD、hreflang、内部链接、图片和重复内容候选校验 — VERIFIED
+- [x] SEO 报告、CSV/JSON 产物和回归比较 — VERIFIED
+- [x] SEO CLI 和本地质量门禁 — VERIFIED
+- [x] CI 执行入口和报告 artifact 配置 — DONE；远程执行 Pending
+- [ ] Lighthouse 实验室报告 — PENDING，需在可用浏览器环境实际运行
+- [ ] 真实用户 Core Web Vitals — PENDING；不能由本地审计替代
+- [ ] 生产服务器/Nginx 重定向和 HTTP 爬取验证 — PENDING

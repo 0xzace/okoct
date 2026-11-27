@@ -6,6 +6,10 @@ playwright-report/
 test-results/
 output/playwright/*.png
 output/lighthouse/
+seo-lab/reports/*
+!seo-lab/reports/.gitkeep
+seo-lab/audits/*
+!seo-lab/audits/.gitkeep
 .playwright-cli/
 .env
 .env.*

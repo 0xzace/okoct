@@ -34,6 +34,14 @@
 - 正式医学/法律/翻译审核、真实关键词 API、Search Console 和生产发布仍为 Pending。
 - 工程验证证据见 [V0.3 验证记录](../evidence/V0.3-VERIFICATION.md)。
 
+## V0.4 — Technical SEO Engine（工程 VERIFIED；外部数据和发布门仍 Pending）
+
+- 完成本地静态构建/HTTP 预览爬取、页面快照和统一 SEO 规则结果格式。
+- 完成 metadata、indexability、canonical、sitemap、robots、JSON-LD、内部链接、redirect、hreflang、图片、重复内容和关键词候选分析。
+- 完成审计报告、JSON/CSV 产物、基线比较、SEO quality gate 和 SEO CLI。
+- 本地构建审计与门禁可通过；Lighthouse 仅作为显式实验室命令，真实用户 Core Web Vitals、Search Console、真实关键词和生产部署仍 Pending。
+- 工程证据见 [V0.4 验证记录](../evidence/V0.4-VERIFICATION.md)。
+
 ## 不在路线图默认范围内
 
 数据库、CMS、用户账号、诊断、个性化治疗、购药、处方、药品推广和医疗咨询不属于默认路线；若业务要改变，必须重新获得明确批准并完成架构和法律评审。

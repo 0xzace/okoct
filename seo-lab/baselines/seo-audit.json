@@ -1,0 +1,730 @@
+{
+  "generatedAt": "2026-11-27T08:21:08.216Z",
+  "ruleVersion": "0.4.0",
+  "origin": "https://okoct.com",
+  "source": "dist",
+  "crawledUrls": 12,
+  "indexability": [
+    {
+      "url": "https://okoct.com/",
+      "status": 200,
+      "state": "Indexable",
+      "reason": "eligible by local technical checks"
+    },
+    {
+      "url": "https://okoct.com/en/",
+      "status": 200,
+      "state": "Indexable",
+      "reason": "eligible by local technical checks"
+    },
+    {
+      "url": "https://okoct.com/en/about/",
+      "status": 200,
+      "state": "Indexable",
+      "reason": "eligible by local technical checks"
+    },
+    {
+      "url": "https://okoct.com/en/safety/",
+      "status": 200,
+      "state": "Indexable",
+      "reason": "eligible by local technical checks"
+    },
+    {
+      "url": "https://okoct.com/en/search/",
+      "status": 200,
+      "state": "Non-indexable",
+      "reason": "robots meta noindex"
+    },
+    {
+      "url": "https://okoct.com/th/",
+      "status": 200,
+      "state": "Indexable",
+      "reason": "eligible by local technical checks"
+    },
+    {
+      "url": "https://okoct.com/th/about/",
+      "status": 200,
+      "state": "Indexable",
+      "reason": "eligible by local technical checks"
+    },
+    {
+      "url": "https://okoct.com/th/safety/",
+      "status": 200,
+      "state": "Indexable",
+      "reason": "eligible by local technical checks"
+    },
+    {
+      "url": "https://okoct.com/th/search/",
+      "status": 200,
+      "state": "Non-indexable",
+      "reason": "robots meta noindex"
+    },
+    {
+      "url": "https://okoct.com/zh/",
+      "status": 200,
+      "state": "Indexable",
+      "reason": "eligible by local technical checks"
+    },
+    {
+      "url": "https://okoct.com/zh/about/",
+      "status": 200,
+      "state": "Indexable",
+      "reason": "eligible by local technical checks"
+    },
+    {
+      "url": "https://okoct.com/zh/search/",
+      "status": 200,
+      "state": "Non-indexable",
+      "reason": "robots meta noindex"
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://okoct.com/",
+      "status": 200,
+      "language": "en",
+      "title": "OKOCT Health — Choose a language",
+      "description": "OKOCT Health is an independent, non-commercial health knowledge website for Thailand. Choose a language.",
+      "canonical": "https://okoct.com/",
+      "noindex": false,
+      "links": [
+        "https://okoct.com/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/th/",
+        "https://okoct.com/zh/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/"
+        },
+        {
+          "hreflang": "zh-Hans",
+          "href": "https://okoct.com/zh/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    },
+    {
+      "url": "https://okoct.com/en/",
+      "status": 200,
+      "language": "en",
+      "title": "Understand the science of weight management — OKOCT Health",
+      "description": "OKOCT Health is preparing independent health knowledge about GLP-1, weight loss injections, medication safety, and weight management in Thailand. Reviewed articles will be published only after human review.",
+      "canonical": "https://okoct.com/en/",
+      "noindex": false,
+      "links": [
+        "https://okoct.com/en/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/th/",
+        "https://okoct.com/zh/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/"
+        },
+        {
+          "hreflang": "zh-Hans",
+          "href": "https://okoct.com/zh/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    },
+    {
+      "url": "https://okoct.com/en/about/",
+      "status": 200,
+      "language": "en",
+      "title": "About OKOCT Health — OKOCT Health",
+      "description": "The scope and principles of the independent OKOCT Health knowledge website.",
+      "canonical": "https://okoct.com/en/about/",
+      "noindex": false,
+      "links": [
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/zh/about/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/about/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/about/"
+        },
+        {
+          "hreflang": "zh-Hans",
+          "href": "https://okoct.com/zh/about/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    },
+    {
+      "url": "https://okoct.com/en/safety/",
+      "status": 200,
+      "language": "en",
+      "title": "Safety and compliance boundaries — OKOCT Health",
+      "description": "The medical safety, privacy, and product boundaries of OKOCT Health.",
+      "canonical": "https://okoct.com/en/safety/",
+      "noindex": false,
+      "links": [
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/th/safety/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/safety/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/safety/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    },
+    {
+      "url": "https://okoct.com/en/search/",
+      "status": 200,
+      "language": "en",
+      "title": "Search knowledge — OKOCT Health",
+      "description": "Search pages and health knowledge published by OKOCT Health.",
+      "canonical": "https://okoct.com/en/search/",
+      "noindex": true,
+      "links": [
+        "https://okoct.com/en/search/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/zh/search/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/search/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/search/"
+        },
+        {
+          "hreflang": "zh-Hans",
+          "href": "https://okoct.com/zh/search/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    },
+    {
+      "url": "https://okoct.com/th/",
+      "status": 200,
+      "language": "th",
+      "title": "เข้าใจวิทยาศาสตร์ของการจัดการน้ำหนัก — OKOCT Health",
+      "description": "OKOCT Health กำลังเตรียมความรู้สุขภาพเกี่ยวกับ GLP-1 การฉีดยาลดน้ำหนัก ความปลอดภัยของยา และการจัดการน้ำหนักในประเทศไทย เนื้อหาที่ผ่านการทบทวนจะเผยแพร่หลังการตรวจสอบโดยมนุษย์",
+      "canonical": "https://okoct.com/th/",
+      "noindex": false,
+      "links": [
+        "https://okoct.com/th/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/en/",
+        "https://okoct.com/zh/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/"
+        },
+        {
+          "hreflang": "zh-Hans",
+          "href": "https://okoct.com/zh/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    },
+    {
+      "url": "https://okoct.com/th/about/",
+      "status": 200,
+      "language": "th",
+      "title": "เกี่ยวกับ OKOCT Health — OKOCT Health",
+      "description": "ขอบเขตและหลักการของเว็บไซต์ความรู้สุขภาพอิสระ OKOCT Health",
+      "canonical": "https://okoct.com/th/about/",
+      "noindex": false,
+      "links": [
+        "https://okoct.com/th/about/",
+        "https://okoct.com/th/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/zh/about/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/about/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/about/"
+        },
+        {
+          "hreflang": "zh-Hans",
+          "href": "https://okoct.com/zh/about/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    },
+    {
+      "url": "https://okoct.com/th/safety/",
+      "status": 200,
+      "language": "th",
+      "title": "ขอบเขตความปลอดภัยและการปฏิบัติตามข้อกำหนด — OKOCT Health",
+      "description": "ข้อจำกัดด้านความปลอดภัย การแพทย์ และความเป็นส่วนตัวของ OKOCT Health",
+      "canonical": "https://okoct.com/th/safety/",
+      "noindex": false,
+      "links": [
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/th/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/en/safety/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/safety/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/safety/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    },
+    {
+      "url": "https://okoct.com/th/search/",
+      "status": 200,
+      "language": "th",
+      "title": "ค้นหาความรู้ — OKOCT Health",
+      "description": "ค้นหาหน้าเว็บและความรู้สุขภาพที่เผยแพร่โดย OKOCT Health",
+      "canonical": "https://okoct.com/th/search/",
+      "noindex": true,
+      "links": [
+        "https://okoct.com/th/search/",
+        "https://okoct.com/th/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/zh/search/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/search/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/search/"
+        },
+        {
+          "hreflang": "zh-Hans",
+          "href": "https://okoct.com/zh/search/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    },
+    {
+      "url": "https://okoct.com/zh/",
+      "status": 200,
+      "language": "zh-Hans",
+      "title": "理解体重管理的科学 — OKOCT Health",
+      "description": "OKOCT Health 正在准备关于 GLP-1、减重注射、用药安全和泰国体重管理的一般性健康知识。经过审核的文章只会在完成人工审核后发布。",
+      "canonical": "https://okoct.com/zh/",
+      "noindex": false,
+      "links": [
+        "https://okoct.com/zh/",
+        "https://okoct.com/zh/search/",
+        "https://okoct.com/zh/about/",
+        "https://okoct.com/th/",
+        "https://okoct.com/en/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/"
+        },
+        {
+          "hreflang": "zh-Hans",
+          "href": "https://okoct.com/zh/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    },
+    {
+      "url": "https://okoct.com/zh/about/",
+      "status": 200,
+      "language": "zh-Hans",
+      "title": "关于 OKOCT Health — OKOCT Health",
+      "description": "独立 OKOCT Health 健康知识网站的范围和原则。",
+      "canonical": "https://okoct.com/zh/about/",
+      "noindex": false,
+      "links": [
+        "https://okoct.com/zh/about/",
+        "https://okoct.com/zh/",
+        "https://okoct.com/zh/search/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/en/about/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/about/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/about/"
+        },
+        {
+          "hreflang": "zh-Hans",
+          "href": "https://okoct.com/zh/about/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    },
+    {
+      "url": "https://okoct.com/zh/search/",
+      "status": 200,
+      "language": "zh-Hans",
+      "title": "搜索知识 — OKOCT Health",
+      "description": "搜索 OKOCT Health 已发布的页面和健康知识。",
+      "canonical": "https://okoct.com/zh/search/",
+      "noindex": true,
+      "links": [
+        "https://okoct.com/zh/search/",
+        "https://okoct.com/zh/",
+        "https://okoct.com/zh/about/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/en/search/"
+      ],
+      "alternates": [
+        {
+          "hreflang": "th",
+          "href": "https://okoct.com/th/search/"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://okoct.com/en/search/"
+        },
+        {
+          "hreflang": "zh-Hans",
+          "href": "https://okoct.com/zh/search/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://okoct.com/"
+        }
+      ]
+    }
+  ],
+  "internalLinks": [
+    {
+      "url": "https://okoct.com/",
+      "outbound": [
+        "https://okoct.com/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/th/",
+        "https://okoct.com/zh/"
+      ],
+      "inbound": [
+        "https://okoct.com/"
+      ]
+    },
+    {
+      "url": "https://okoct.com/en/",
+      "outbound": [
+        "https://okoct.com/en/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/th/",
+        "https://okoct.com/zh/"
+      ],
+      "inbound": [
+        "https://okoct.com/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/th/",
+        "https://okoct.com/zh/"
+      ]
+    },
+    {
+      "url": "https://okoct.com/en/about/",
+      "outbound": [
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/zh/about/"
+      ],
+      "inbound": [
+        "https://okoct.com/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/zh/about/"
+      ]
+    },
+    {
+      "url": "https://okoct.com/en/safety/",
+      "outbound": [
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/th/safety/"
+      ],
+      "inbound": [
+        "https://okoct.com/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/th/safety/"
+      ]
+    },
+    {
+      "url": "https://okoct.com/en/search/",
+      "outbound": [
+        "https://okoct.com/en/search/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/zh/search/"
+      ],
+      "inbound": [
+        "https://okoct.com/",
+        "https://okoct.com/en/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/zh/search/"
+      ]
+    },
+    {
+      "url": "https://okoct.com/th/",
+      "outbound": [
+        "https://okoct.com/th/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/en/",
+        "https://okoct.com/zh/"
+      ],
+      "inbound": [
+        "https://okoct.com/",
+        "https://okoct.com/en/",
+        "https://okoct.com/th/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/zh/"
+      ]
+    },
+    {
+      "url": "https://okoct.com/th/about/",
+      "outbound": [
+        "https://okoct.com/th/about/",
+        "https://okoct.com/th/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/en/about/",
+        "https://okoct.com/zh/about/"
+      ],
+      "inbound": [
+        "https://okoct.com/en/about/",
+        "https://okoct.com/th/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/zh/about/"
+      ]
+    },
+    {
+      "url": "https://okoct.com/th/safety/",
+      "outbound": [
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/th/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/en/safety/"
+      ],
+      "inbound": [
+        "https://okoct.com/en/safety/",
+        "https://okoct.com/th/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/th/search/"
+      ]
+    },
+    {
+      "url": "https://okoct.com/th/search/",
+      "outbound": [
+        "https://okoct.com/th/search/",
+        "https://okoct.com/th/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/en/search/",
+        "https://okoct.com/zh/search/"
+      ],
+      "inbound": [
+        "https://okoct.com/en/search/",
+        "https://okoct.com/th/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/th/safety/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/zh/search/"
+      ]
+    },
+    {
+      "url": "https://okoct.com/zh/",
+      "outbound": [
+        "https://okoct.com/zh/",
+        "https://okoct.com/zh/search/",
+        "https://okoct.com/zh/about/",
+        "https://okoct.com/th/",
+        "https://okoct.com/en/"
+      ],
+      "inbound": [
+        "https://okoct.com/",
+        "https://okoct.com/en/",
+        "https://okoct.com/th/",
+        "https://okoct.com/zh/",
+        "https://okoct.com/zh/about/",
+        "https://okoct.com/zh/search/"
+      ]
+    },
+    {
+      "url": "https://okoct.com/zh/about/",
+      "outbound": [
+        "https://okoct.com/zh/about/",
+        "https://okoct.com/zh/",
+        "https://okoct.com/zh/search/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/en/about/"
+      ],
+      "inbound": [
+        "https://okoct.com/en/about/",
+        "https://okoct.com/th/about/",
+        "https://okoct.com/zh/",
+        "https://okoct.com/zh/about/",
+        "https://okoct.com/zh/search/"
+      ]
+    },
+    {
+      "url": "https://okoct.com/zh/search/",
+      "outbound": [
+        "https://okoct.com/zh/search/",
+        "https://okoct.com/zh/",
+        "https://okoct.com/zh/about/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/en/search/"
+      ],
+      "inbound": [
+        "https://okoct.com/en/search/",
+        "https://okoct.com/th/search/",
+        "https://okoct.com/zh/",
+        "https://okoct.com/zh/about/",
+        "https://okoct.com/zh/search/"
+      ]
+    }
+  ],
+  "performance": {
+    "status": "Pending",
+    "source": "laboratory-only",
+    "metrics": [],
+    "note": "No field Core Web Vitals or real-user INP data is inferred from this local audit."
+  },
+  "issues": [],
+  "summary": {
+    "crawledUrls": 12,
+    "indexableUrls": 9,
+    "brokenLinks": 0,
+    "Critical": 0,
+    "Error": 0,
+    "Warning": 0,
+    "Notice": 0,
+    "Info": 0
+  }
+}

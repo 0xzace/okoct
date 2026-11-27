@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.4.0] - 2026-11-27
+
+### Added
+
+- 本地 Technical SEO Engine：dist/HTTP crawl、页面快照、metadata、indexability、canonical、sitemap、robots、structured data、hreflang、内部链接、redirect、图片、重复内容和关键词候选分析。
+- SEO 审计 JSON/Markdown/CSV 报告、基线比较和默认阻断 Critical/Error 的质量门禁。
+- `seo:*` CLI 命令、CI 报告 artifact 配置、V0.4 SEO 架构/规则/性能/回归规范和基线证据。
+
+### Verified
+
+- 本地生产构建审计：12 个页面被爬取、9 个页面技术上可索引、0 Critical、0 Error、0 Warning；SEO gate PASS。
+- V0.4 规则、报告、回归、质量门禁集成测试已通过；完整验收结果见 `docs/evidence/V0.4-VERIFICATION.md`。
+
+### Pending
+
+- Docker daemon、远程 GitHub Actions、Search Console、真实关键词/SERP、真实用户 Core Web Vitals、医学/法律/翻译审核和生产发布授权仍未完成。
+
 ## [0.3.0] - 2026-11-27
 
 ### Added

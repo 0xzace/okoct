@@ -1,6 +1,6 @@
 # OKOCT Health
 
-OKOCT Health 是面向泰国市场的独立、非商业健康知识网站。当前版本为 `0.3.0`，在 V0.1 的 SEO First、国际化、静态生成和合规优先基础上，完成科学编辑型设计系统的视觉收敛，并进入 Content Engine 建设；当前仍不发布未经真实专业审核的正式医学文章。
+OKOCT Health 是面向泰国市场的独立、非商业健康知识网站。当前版本为 `0.4.0`，在 V0.3 Content Engine 基础上完成本地 Technical SEO Engine；当前仍不发布未经真实专业审核的正式医学文章。
 
 ## 当前范围
 
@@ -11,6 +11,7 @@ OKOCT Health 是面向泰国市场的独立、非商业健康知识网站。当�
 - Evidence Horizon 品牌资产、CSS Design Tokens、原生 Astro 组件、响应式首页和 noindex 搜索页。
 - 内容为空时隐藏重复的文章/研究区块；正式内容必须通过发布门禁后才显示摘要。
 - V0.3 Content Engine：类型安全实体、主题/关键词/brief、参考文献、审核记录、生命周期、统一 repository、fail-closed 发布门禁、文章页面和内容审计。
+- V0.4 Technical SEO Engine：本地 dist/HTTP 爬取、metadata/indexability/canonical/sitemap/robots/JSON-LD/hreflang/内部链接/图片/重复内容/关键词规则、审计报告、回归基线和质量门禁。
 - 移动端紧凑导航、Escape/焦点管理、axe-core 检查、生产构建截图和 Lighthouse 实验室基线。
 - Vitest、Playwright、TypeScript、ESLint、Prettier、Pagefind、Docker、Nginx 和 GitHub Actions 配置。
 
@@ -34,17 +35,19 @@ pnpm test:integration
 pnpm validate:content
 pnpm build
 pnpm validate:seo
+pnpm seo:audit
+pnpm seo:gate
 pnpm test:e2e
 pnpm exec playwright test tests/e2e/accessibility.spec.ts
 ```
 
-完整静态验收使用 `pnpm verify:static`；完整验收使用 `pnpm verify`。浏览器依赖首次使用 Playwright 时执行 `pnpm exec playwright install chromium`。
+完整静态验收使用 `pnpm verify:static`；完整验收使用 `pnpm verify`。`pnpm seo:baseline` 保存显式 SEO 基线，`pnpm seo:compare` 比较当前报告；浏览器依赖首次使用 Playwright 时执行 `pnpm exec playwright install chromium`。
 
 ## 合规状态
 
 V0.1 的内容 fixture 明确标记为 `draft`、`test-only` 和不可索引。正式医学内容必须具备可验证来源，并经过真实的事实核查、专业医学审核、合规审核和翻译审核后，才允许进入公开构建。自动化门禁不能替代专业人员审核。
 
-本地 Docker 镜像构建、Nginx 容器 HTTP/安全头检查和基础 VPS/DNS/TLS 部署已完成；GitHub Actions 自动部署仍需配置专用 SSH Secrets 后验证。Cloudflare、Search Console、真实用户性能测量和正式医学审核仍为 Pending。本仓库不包含生产凭据。
+本地 Docker 镜像构建、Nginx 容器 HTTP/安全头检查和基础 VPS/DNS/TLS 部署已完成；V0.4 SEO 审计只针对本地静态构建，Docker daemon、远程 GitHub Actions、Cloudflare、Search Console、真实用户性能测量和正式医学审核仍为 Pending。本仓库不包含生产凭据。
 
 ## 文档
 
@@ -62,3 +65,6 @@ V0.1 的内容 fixture 明确标记为 `draft`、`test-only` 和不可索引。�
 - [V0.2.1 验证证据](docs/evidence/V0.2.1-VERIFICATION.md)
 - [V0.3 内容架构](docs/content/CONTENT-ARCHITECTURE.md)
 - [V0.3 任务状态](docs/roadmap/V0.3-TASKS.md)
+- [V0.4 Technical SEO 任务状态](docs/roadmap/V0.4-TASKS.md)
+- [V0.4 SEO 架构](docs/seo/SEO-ARCHITECTURE.md)
+- [V0.4 SEO 规则](docs/seo/SEO-AUDIT-RULES.md)
