@@ -91,10 +91,11 @@ jobs:
           set -euo pipefail
           test -n "$DEPLOY_HOST"
           test -n "$DEPLOY_USER"
+          scp_args=(-i "$HOME/.ssh/okoct_deploy" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -P 22)
           ssh_args=(-i "$HOME/.ssh/okoct_deploy" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -p 22)
           remote_archive="/tmp/okoct-dist-${GITHUB_SHA}.tar.gz"
           remote_stage="/tmp/okoct-release-${GITHUB_SHA}"
-          scp "${ssh_args[@]}" "$RUNNER_TEMP/okoct-dist.tar.gz" "${DEPLOY_USER}@${DEPLOY_HOST}:${remote_archive}"
+          scp "${scp_args[@]}" "$RUNNER_TEMP/okoct-dist.tar.gz" "${DEPLOY_USER}@${DEPLOY_HOST}:${remote_archive}"
           ssh "${ssh_args[@]}" "${DEPLOY_USER}@${DEPLOY_HOST}" "set -euo pipefail
             test \"\$(id -u)\" -ne 0
             test -d /var/www/okoct
