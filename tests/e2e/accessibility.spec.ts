@@ -3,7 +3,9 @@ import { expect, test } from "@playwright/test";
 
 test.describe.configure({ mode: "serial" });
 
-test("localized homepages have no automated axe violations", async ({ page }) => {
+test("localized homepages have no automated axe violations", async ({
+  page,
+}) => {
   for (const path of ["/th/", "/en/", "/zh/"]) {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).analyze();
@@ -28,5 +30,7 @@ test("opened mobile menu has no automated axe violations", async ({ page }) => {
     .include("[data-site-menu]")
     .analyze();
 
-  expect(results.violations, "opened mobile menu has axe violations").toEqual([]);
+  expect(results.violations, "opened mobile menu has axe violations").toEqual(
+    [],
+  );
 });

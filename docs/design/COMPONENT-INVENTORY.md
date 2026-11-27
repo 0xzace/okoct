@@ -10,7 +10,7 @@
 
 ## 内容和安全组件
 
-`HeroPanel`、`TopicCard`、`FeaturedContent`、`ContentGrid`、`EditorialStandards`、`MedicalDisclaimer`、`SafetyNotice`、`EvidenceNote`、`AuthorCard`、`ReviewerCard`。
+`HeroPanel`、`TopicCard`、`FeaturedContent`、`ContentGrid`、`EditorialStandards`、`MedicalDisclaimer`、`SafetyNotice`、`EvidenceNote`、`AuthorCard`、`ReviewerCard`。`FeaturedContent` 只接收通过发布门禁的真实摘要；没有可发布内容时由首页不渲染该区块。
 
 ## 阅读模板组件
 

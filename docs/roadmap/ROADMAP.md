@@ -18,6 +18,13 @@
 - 完成响应式、主题、reduced-motion、键盘和截图验收；证据见 [V0.2 验证记录](../evidence/V0.2-VERIFICATION.md)。
 - 真实作者、医学审核人、法律/合规负责人、证据存档流程和正式内容发布仍为 Pending。
 
+## V0.2.1 — Visual Refinement & Production Quality（VERIFIED；专业内容门仍 Pending）
+
+- 完成内容驱动首页、重复空状态收敛、体重管理方向 Hero 和 Evidence Horizon 视觉收敛。
+- 完成移动端紧凑导航、Escape/焦点管理、主题同步和真实路由限制。
+- 完成 axe、生产预览视觉测试和 Lighthouse 实验室基线；最终 Docker 证据见 [V0.2.1 验证记录](../evidence/V0.2.1-VERIFICATION.md)。
+- 正式医学审核、法律/隐私门、真实用户性能和生产发布仍为 Pending。
+
 ## V0.3 — 实验和可观测性（Proposed）
 
 - 记录 SEO 实验假设、基线、观察窗口、结果和限制。

@@ -37,7 +37,9 @@ test.describe("mobile navigation", () => {
       "href",
       "/en/search/",
     );
-    await expect(menu.getByRole("navigation", { name: "Language" })).toBeVisible();
+    await expect(
+      menu.getByRole("navigation", { name: "Language" }),
+    ).toBeVisible();
     await expect(menu.locator("[data-theme-control]")).toBeVisible();
     await expect(page.getByRole("link", { name: "GLP-1" })).toHaveCount(0);
     expect(

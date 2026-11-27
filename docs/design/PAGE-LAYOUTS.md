@@ -6,7 +6,9 @@
 
 ## 首页
 
-顺序固定为 Global Header → Hero → Knowledge Search → Topic Explorer → Featured Knowledge → GLP-1 Knowledge readiness → Safety and Awareness → Research readiness → Editorial Standards → Global Footer。没有真实文章时使用诚实空状态。
+顺序为 Global Header → Hero → Knowledge Search → Topic Scope → 可发布 Featured Knowledge（有对应 locale 的审核内容时才显示）→ Safety Boundary → Editorial Standards → Global Footer。没有真实文章时隐藏文章、GLP-1 和 Research 空区块，不生成不存在的专题链接。
+
+移动端 Header 使用紧凑工具栏；菜单采用原生 `<details>/<summary>`，主题和语言控件在菜单面板内保持可访问。
 
 ## 内容模板
 

@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.2.1] - 2026-11-27
+
+### Added
+
+- 内容驱动的首页 Featured 摘要和重复空状态收敛；draft/test-only 内容继续被排除。
+- 移动端原生 disclosure 导航，支持 Escape、焦点恢复、背景滚动控制和主题同步。
+- `@axe-core/playwright` 无障碍检查、生产构建预览截图和 Lighthouse 实验室基线。
+
+### Changed
+
+- Hero 明确体重管理知识方向，Evidence Horizon 增加克制的抽象轨道并支持 reduced-motion。
+- 修复浅色主题主按钮对比度和搜索页空状态 heading 层级。
+- section spacing 和移动端 Hero 高度收敛；Playwright 改为生产预览验证。
+
+### Verified
+
+- axe 3/3、生产预览视觉测试 6/6、Lighthouse 三语言移动/桌面基线已记录在 `docs/evidence/V0.2.1-VERIFICATION.md`。
+- Docker `okoct:0.2.1` 镜像构建、容器健康检查和 Nginx HTTP/安全头验证已通过。
+
+### Pending
+
+- 正式医学/法律/翻译审核、真实用户性能、Search Console、生产发布和外部账号验证仍未完成。
+
 ## [0.2.0] - 2026-11-27
 
 ### Added

@@ -35,3 +35,11 @@ Evidence Horizon：专业、安静、编辑型健康知识界面。用地平线�
 - 主题控件不承载页面内容；页面无需 JavaScript 也可阅读。
 - `prefers-reduced-motion: reduce` 禁用非必要动画和滚动动画。
 - 颜色目标为 WCAG 2.2 AA；完整对比度和真实设备审查仍需在发布前执行。
+
+## V0.2.1 视觉收敛
+
+- Hero 直接说明体重管理、GLP-1、减重注射、用药安全和泰国背景是规划中的知识方向，同时声明正式文章须经人工审核后发布。
+- 首页按可发布内容决定是否显示 Featured 摘要；没有正式内容时不显示重复的 GLP-1、Research 和 Featured 空状态区块。主题卡只表达阅读范围，不生成不存在的专题链接。
+- 移动端 Header 使用原生 `<details>/<summary>` disclosure；脚本增强 Escape、焦点恢复和背景滚动，无脚本时仍可展开真实路由。
+- section spacing 使用 `--section-xs` 至 `--section-xl` 和对应 mobile token；Evidence Horizon 的动画在 reduced-motion 下关闭。
+- 主按钮使用显式 `text-on-brand` 颜色，搜索页空状态按页面层级使用 `h2`；axe 结果和生产预览截图记录在 V0.2.1 验证文档。

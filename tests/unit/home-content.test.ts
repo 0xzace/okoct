@@ -52,8 +52,6 @@ describe("homepage publication filtering", () => {
       updatedAt: undefined,
     };
 
-    expect(
-      getPublishedArticlesForLocale([draftArticle], "en"),
-    ).toEqual([]);
+    expect(getPublishedArticlesForLocale([draftArticle], "en")).toEqual([]);
   });
 });
