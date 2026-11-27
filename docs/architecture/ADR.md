@@ -41,3 +41,10 @@
 - 决策：公开文章使用 Astro Content Collections；关键词、主题、brief 和参考资料使用 Git 管理记录；生产页面只能通过 repository 和 fail-closed publication gate 读取。
 - 原因：在不引入数据库或 CMS 的前提下保留版本历史、可审计性和静态生成能力，并阻止页面绕过审核记录。
 - 代价：内容变更需要重新构建；editorial 与公开 frontmatter 的关系必须持续通过引用校验维护。
+
+## ADR-007：V0.4 使用构建后、无依赖 SEO 审计引擎
+
+- 状态：Accepted for V0.4
+- 决策：保留 `src/seo` 作为生成期 SEO 规范实现，使用 `scripts/seo/engine.mjs` 对本地 `dist/` 或明确授权的本地预览执行构建后审计、报告、回归和质量门禁。
+- 原因：不引入数据库、CMS 或 TypeScript 运行时依赖，同时能验证真实静态产物与内容泄露风险。
+- 代价：当前规则以 HTML/静态资源和显式 redirect map 为输入；真实生产服务器、Search Console、现场性能和外部站点爬取仍需独立验证。
