@@ -1,5 +1,6 @@
 import { readFile, readdir, writeFile } from "node:fs/promises";
 import { extname, join, relative, resolve, sep } from "node:path";
+import prettier from "prettier";
 
 export const RULE_VERSION = "0.4.0";
 export const SEVERITIES = ["Critical", "Error", "Warning", "Notice", "Info"];
@@ -1156,5 +1157,8 @@ export async function renderReports(report, outputDir) {
 }
 
 export async function writeJson(path, value) {
-  await writeFile(resolve(path), JSON.stringify(value, null, 2));
+  const content = await prettier.format(JSON.stringify(value), {
+    parser: "json",
+  });
+  await writeFile(resolve(path), content);
 }

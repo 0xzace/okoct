@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T08:29:45.125Z",
+  "generatedAt": "2026-11-27T08:32:11.810Z",
   "ruleVersion": "0.4.0",
   "origin": "https://okoct.com",
   "crawlOrigin": "https://okoct.com",
@@ -98,22 +98,10 @@
         "https://okoct.com/zh/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/"
-        },
-        {
-          "hreflang": "zh-Hans",
-          "href": "https://okoct.com/zh/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/" },
+        { "hreflang": "zh-Hans", "href": "https://okoct.com/zh/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     },
     {
@@ -133,22 +121,10 @@
         "https://okoct.com/zh/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/"
-        },
-        {
-          "hreflang": "zh-Hans",
-          "href": "https://okoct.com/zh/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/" },
+        { "hreflang": "zh-Hans", "href": "https://okoct.com/zh/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     },
     {
@@ -168,22 +144,10 @@
         "https://okoct.com/zh/about/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/about/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/about/"
-        },
-        {
-          "hreflang": "zh-Hans",
-          "href": "https://okoct.com/zh/about/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/about/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/about/" },
+        { "hreflang": "zh-Hans", "href": "https://okoct.com/zh/about/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     },
     {
@@ -202,18 +166,9 @@
         "https://okoct.com/th/safety/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/safety/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/safety/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/safety/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/safety/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     },
     {
@@ -233,22 +188,10 @@
         "https://okoct.com/zh/search/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/search/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/search/"
-        },
-        {
-          "hreflang": "zh-Hans",
-          "href": "https://okoct.com/zh/search/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/search/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/search/" },
+        { "hreflang": "zh-Hans", "href": "https://okoct.com/zh/search/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     },
     {
@@ -268,22 +211,10 @@
         "https://okoct.com/zh/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/"
-        },
-        {
-          "hreflang": "zh-Hans",
-          "href": "https://okoct.com/zh/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/" },
+        { "hreflang": "zh-Hans", "href": "https://okoct.com/zh/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     },
     {
@@ -303,22 +234,10 @@
         "https://okoct.com/zh/about/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/about/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/about/"
-        },
-        {
-          "hreflang": "zh-Hans",
-          "href": "https://okoct.com/zh/about/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/about/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/about/" },
+        { "hreflang": "zh-Hans", "href": "https://okoct.com/zh/about/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     },
     {
@@ -337,18 +256,9 @@
         "https://okoct.com/en/safety/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/safety/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/safety/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/safety/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/safety/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     },
     {
@@ -368,22 +278,10 @@
         "https://okoct.com/zh/search/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/search/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/search/"
-        },
-        {
-          "hreflang": "zh-Hans",
-          "href": "https://okoct.com/zh/search/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/search/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/search/" },
+        { "hreflang": "zh-Hans", "href": "https://okoct.com/zh/search/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     },
     {
@@ -402,22 +300,10 @@
         "https://okoct.com/en/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/"
-        },
-        {
-          "hreflang": "zh-Hans",
-          "href": "https://okoct.com/zh/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/" },
+        { "hreflang": "zh-Hans", "href": "https://okoct.com/zh/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     },
     {
@@ -436,22 +322,10 @@
         "https://okoct.com/en/about/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/about/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/about/"
-        },
-        {
-          "hreflang": "zh-Hans",
-          "href": "https://okoct.com/zh/about/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/about/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/about/" },
+        { "hreflang": "zh-Hans", "href": "https://okoct.com/zh/about/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     },
     {
@@ -470,22 +344,10 @@
         "https://okoct.com/en/search/"
       ],
       "alternates": [
-        {
-          "hreflang": "th",
-          "href": "https://okoct.com/th/search/"
-        },
-        {
-          "hreflang": "en",
-          "href": "https://okoct.com/en/search/"
-        },
-        {
-          "hreflang": "zh-Hans",
-          "href": "https://okoct.com/zh/search/"
-        },
-        {
-          "hreflang": "x-default",
-          "href": "https://okoct.com/"
-        }
+        { "hreflang": "th", "href": "https://okoct.com/th/search/" },
+        { "hreflang": "en", "href": "https://okoct.com/en/search/" },
+        { "hreflang": "zh-Hans", "href": "https://okoct.com/zh/search/" },
+        { "hreflang": "x-default", "href": "https://okoct.com/" }
       ]
     }
   ],
@@ -501,9 +363,7 @@
         "https://okoct.com/th/",
         "https://okoct.com/zh/"
       ],
-      "inbound": [
-        "https://okoct.com/"
-      ]
+      "inbound": ["https://okoct.com/"]
     },
     {
       "url": "https://okoct.com/en/",
