@@ -1,6 +1,6 @@
 # OKOCT Health
 
-OKOCT Health 是面向泰国市场的独立、非商业健康知识网站。当前版本为 `0.1.0`，目标是建立 SEO First、国际化、静态生成和合规优先的工程基础；V0.1 不发布正式医学文章。
+OKOCT Health 是面向泰国市场的独立、非商业健康知识网站。当前版本为 `0.2.0`，在 V0.1 的 SEO First、国际化、静态生成和合规优先基础上，增加科学编辑型设计系统和可验证的首页体验；当前仍不发布正式医学文章。
 
 ## 当前范围
 
@@ -8,9 +8,10 @@ OKOCT Health 是面向泰国市场的独立、非商业健康知识网站。当�
 - 类型安全的 i18n、canonical、hreflang、Open Graph、JSON-LD、sitemap 和 robots.txt 基础设施。
 - Content Collections + Zod 内容模型，以及构建前/构建后内容发布门禁。
 - 语义 HTML、键盘焦点、深色/浅色/系统主题和 reduced-motion 基础支持。
+- Evidence Horizon 品牌资产、CSS Design Tokens、原生 Astro 组件、响应式首页和 noindex 搜索页。
 - Vitest、Playwright、TypeScript、ESLint、Prettier、Pagefind、Docker、Nginx 和 GitHub Actions 配置。
 
-V0.1 不包含数据库、后端、CMS、账号、支付、购药、诊断、个性化治疗、剂量建议、在线诊疗或敏感健康信息收集。
+V0.2 仍不包含数据库、后端、CMS、账号、支付、购药、诊断、个性化治疗、剂量建议、在线诊疗或敏感健康信息收集。
 
 ## 本地开发
 
@@ -49,3 +50,6 @@ V0.1 的内容 fixture 明确标记为 `draft`、`test-only` 和不可索引。�
 - [内容模型](docs/content/CONTENT-SCHEMA.md)
 - [发布清单](docs/compliance/RELEASE-CHECKLIST.md)
 - [V0.1 验证证据](docs/evidence/V0.1-VERIFICATION.md)
+- [V0.2 设计说明](docs/superpowers/specs/2026-11-27-okoct-v0.2-design.md)
+- [V0.2 任务状态](docs/roadmap/V0.2-TASKS.md)
+- [V0.2 验证证据](docs/evidence/V0.2-VERIFICATION.md)
