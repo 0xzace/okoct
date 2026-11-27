@@ -1,11 +1,12 @@
 import { LOCALE_PREFIXES, SUPPORTED_LOCALES, type Locale } from "./config";
 
-export type RouteKey = "home" | "about" | "safety";
+export type RouteKey = "home" | "about" | "safety" | "search";
 
 const ROUTE_PATHS: Record<RouteKey, Partial<Record<Locale, string>>> = {
   home: { th: "/", en: "/", "zh-Hans": "/" },
   about: { th: "/about/", en: "/about/", "zh-Hans": "/about/" },
   safety: { th: "/safety/", en: "/safety/" },
+  search: { th: "/search/", en: "/search/", "zh-Hans": "/search/" },
 };
 
 export function getRouteLocales(route: RouteKey): Locale[] {

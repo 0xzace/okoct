@@ -28,4 +28,17 @@ describe("internationalization", () => {
     expect(getRouteLocales("safety")).toEqual(["th", "en"]);
     expect(getLocalizedPath("safety", "zh-Hans")).toBeUndefined();
   });
+
+  it("provides complete homepage and search copy for every locale", () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const dictionary = getDictionary(locale);
+
+      expect(dictionary.home.topicCards).toHaveLength(3);
+      expect(dictionary.home.standardsItems).toHaveLength(3);
+      expect(dictionary.home.searchPlaceholder.length).toBeGreaterThan(0);
+      expect(dictionary.search.noResults.length).toBeGreaterThan(0);
+    }
+
+    expect(getLocalizedPath("search", "zh-Hans")).toBe("/zh/search/");
+  });
 });

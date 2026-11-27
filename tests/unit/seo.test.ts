@@ -66,6 +66,21 @@ describe("SEO metadata", () => {
     expect(metadata.canonical).toBe("https://okoct.com/");
   });
 
+  it("keeps the search page noindex and includes the branded social preview", () => {
+    const metadata = buildSeoMetadata({
+      route: "search",
+      locale: "th",
+      title: "ค้นหาความรู้ — OKOCT Health",
+      description: "ค้นหาข้อมูลสุขภาพที่เผยแพร่แล้ว",
+      indexable: false,
+    });
+
+    expect(metadata.robots).toBe("noindex,nofollow");
+    expect(metadata.openGraph.image).toBe(
+      "https://okoct.com/brand/okoct-social-preview.svg",
+    );
+  });
+
   it("builds truthful WebPage JSON-LD without medical claims", () => {
     const jsonLd = buildWebPageJsonLd({
       title: "About OKOCT Health",

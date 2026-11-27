@@ -16,7 +16,13 @@ export function toAbsoluteUrl(path: string): string {
 
   url.hash = "";
 
-  if (url.pathname !== "/" && !url.pathname.endsWith("/")) {
+  const lastPathSegment = url.pathname.split("/").at(-1) ?? "";
+
+  if (
+    url.pathname !== "/" &&
+    !url.pathname.endsWith("/") &&
+    !lastPathSegment.includes(".")
+  ) {
     url.pathname = `${url.pathname}/`;
   }
 

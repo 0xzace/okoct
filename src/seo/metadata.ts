@@ -26,7 +26,7 @@ export function buildSeoMetadata(input: SeoInput): SeoMetadata {
       url: canonical,
       locale: input.locale,
       siteName: SITE_CONFIG.name,
-      ...(input.image ? { image: toAbsoluteUrl(input.image) } : {}),
+      image: toAbsoluteUrl(input.image ?? SITE_CONFIG.socialPreviewPath),
     },
     alternates: [
       ...getHreflangLinks(input.route),
