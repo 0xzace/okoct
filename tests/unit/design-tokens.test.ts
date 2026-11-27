@@ -61,6 +61,19 @@ describe("V0.2 design tokens and brand assets", () => {
     }
   });
 
+  it("defines responsive section spacing tokens for the visual refinement", () => {
+    expect(css).toContain("--section-xs: 1.5rem");
+    expect(css).toContain("--section-sm: 2.5rem");
+    expect(css).toContain("--section-md: 4rem");
+    expect(css).toContain("--section-lg: 6rem");
+    expect(css).toContain("--section-xl: 8rem");
+    expect(css).toContain("--section-xs-mobile: 1rem");
+    expect(css).toContain("--section-sm-mobile: 1.5rem");
+    expect(css).toContain("--section-md-mobile: 2.5rem");
+    expect(css).toContain("--section-lg-mobile: 3.5rem");
+    expect(css).toContain("--section-xl-mobile: 4.5rem");
+  });
+
   it("keeps normal text colors above WCAG AA contrast targets", () => {
     expect(css).toContain("--color-on-brand: #0b252b");
     expect(css).toContain("--color-evidence-strong: #765017");

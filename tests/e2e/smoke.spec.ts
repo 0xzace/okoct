@@ -109,7 +109,7 @@ test("homepage exposes the editorial sections and truthful empty states", async 
 
   await expect(
     page.getByRole("heading", {
-      name: "Understand health information with context",
+      name: "Understand the science of weight management",
     }),
   ).toBeVisible();
   await expect(

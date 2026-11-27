@@ -128,10 +128,10 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       closeMenu: "ปิดเมนู",
     },
     home: {
-      eyebrow: "ความรู้สุขภาพที่เป็นอิสระ",
-      title: "ทำความเข้าใจสุขภาพอย่างมีข้อมูล",
+      eyebrow: "ความรู้สุขภาพอิสระสำหรับประเทศไทย",
+      title: "เข้าใจวิทยาศาสตร์ของการจัดการน้ำหนัก",
       description:
-        "OKOCT Health ช่วยให้คุณอ่านข้อมูลสุขภาพอย่างมีบริบท โดยใช้แหล่งข้อมูลที่ตรวจสอบได้และขอบเขตที่ชัดเจน",
+        "OKOCT Health กำลังเตรียมความรู้สุขภาพเกี่ยวกับ GLP-1 การฉีดยาลดน้ำหนัก ความปลอดภัยของยา และการจัดการน้ำหนักในประเทศไทย เนื้อหาที่ผ่านการทบทวนจะเผยแพร่หลังการตรวจสอบโดยมนุษย์",
       exploreLabel: "สำรวจความรู้",
       secondaryLabel: "อ่านหลักการของเรา",
       searchLabel: "ค้นหาความรู้",
@@ -238,10 +238,10 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       closeMenu: "Close menu",
     },
     home: {
-      eyebrow: "Independent health knowledge",
-      title: "Understand health information with context",
+      eyebrow: "Independent health knowledge for Thailand",
+      title: "Understand the science of weight management",
       description:
-        "OKOCT Health helps you read health information with context, verifiable sources, and clear boundaries.",
+        "OKOCT Health is preparing independent health knowledge about GLP-1, weight loss injections, medication safety, and weight management in Thailand. Reviewed articles will be published only after human review.",
       exploreLabel: "Explore knowledge",
       secondaryLabel: "Read our standards",
       searchLabel: "Search knowledge",
@@ -354,10 +354,10 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       closeMenu: "关闭菜单",
     },
     home: {
-      eyebrow: "独立健康知识",
-      title: "在完整语境中理解健康信息",
+      eyebrow: "面向泰国的独立健康知识",
+      title: "理解体重管理的科学",
       description:
-        "OKOCT Health 帮助你在完整语境中阅读健康信息，关注可验证来源和清晰边界。",
+        "OKOCT Health 正在准备关于 GLP-1、减重注射、用药安全和泰国体重管理的一般性健康知识。经过审核的文章只会在完成人工审核后发布。",
       exploreLabel: "探索健康知识",
       secondaryLabel: "阅读编辑标准",
       searchLabel: "搜索知识",

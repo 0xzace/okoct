@@ -30,21 +30,21 @@ const {
 } = Astro.props;
 ---
 
-<section class="grid items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(22rem,1.05fr)] lg:gap-16">
+<section class="grid items-center gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(22rem,1.05fr)] lg:gap-16">
   <div class="max-w-2xl">
     <p class="text-sm font-semibold tracking-[0.08em] text-brand">{eyebrow}</p>
-    <h1 class="mt-5 max-w-2xl font-display text-5xl font-bold tracking-[-0.06em] text-ink sm:text-6xl lg:text-7xl">
+    <h1 class="mt-4 max-w-2xl font-display text-5xl font-bold leading-[1.05] tracking-[-0.06em] text-ink sm:mt-5 sm:text-6xl lg:text-7xl">
       {title}
     </h1>
-    <p class="mt-6 max-w-xl text-lg leading-8 text-ink-muted sm:text-xl">{description}</p>
-    <div class="mt-8 flex flex-wrap gap-3">
+    <p class="mt-5 max-w-xl text-lg leading-8 text-ink-muted sm:mt-6 sm:text-xl">{description}</p>
+    <div class="mt-7 flex flex-wrap gap-3 sm:mt-8">
       <Button href={primaryHref}>{primaryLabel}</Button>
       <Button href={secondaryHref} variant="secondary">{secondaryLabel}</Button>
     </div>
   </div>
 
-  <div class="hero-horizon surface-grid min-h-[22rem] rounded-panel border border-line p-6 shadow-panel sm:min-h-[28rem] sm:p-8" aria-hidden="true">
-    <div class="relative z-10 flex h-full min-h-[19rem] flex-col justify-between sm:min-h-[24rem]">
+  <div class="hero-horizon surface-grid min-h-[18rem] rounded-panel border border-line p-5 shadow-panel sm:min-h-[26rem] sm:p-8" aria-hidden="true">
+    <div class="relative z-10 flex h-full min-h-[15rem] flex-col justify-between sm:min-h-[22rem]">
       <div class="flex items-center justify-between text-xs font-semibold tracking-[0.12em] text-ink-muted">
         <span>{horizon.label}</span>
         <span>{horizon.step}</span>
@@ -53,6 +53,8 @@ const {
         <path d="M34 250H486" class="stroke-line" stroke-width="1.5" />
         <path d="M88 250c48-118 72-166 132-166s84 48 132 166" class="stroke-brand" stroke-width="3" stroke-linecap="round" />
         <path d="M138 250c36-62 56-86 82-86s46 24 82 86" class="stroke-evidence" stroke-width="2" stroke-linecap="round" />
+        <path d="M66 250c54-78 102-112 154-112s96 32 154 112" class="hero-orbit stroke-line" stroke-width="1.5" stroke-linecap="round" opacity="0.7" />
+        <path d="M64 92H456M64 122H456M64 152H456" class="stroke-line" stroke-width="1" stroke-linecap="round" opacity="0.45" />
         <circle cx="220" cy="84" r="6" class="fill-evidence" />
         <path d="M220 78v-44M220 34h44" class="stroke-evidence" stroke-width="1.5" stroke-linecap="round" />
         <path d="M34 218h18M34 186h18M34 154h18M34 122h18" class="stroke-line" stroke-width="1.5" stroke-linecap="round" />

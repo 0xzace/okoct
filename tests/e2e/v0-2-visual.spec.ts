@@ -51,21 +51,21 @@ test("captures desktop, mobile, Thai, Chinese and dark theme artifacts", async (
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/en/");
   await page.screenshot({
-    path: "output/playwright/v0-2-home-en-desktop-light.png",
+    path: "output/playwright/v0-2-1-home-en-desktop-light.png",
     fullPage: true,
   });
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/th/");
   await page.screenshot({
-    path: "output/playwright/v0-2-home-th-mobile-light.png",
+    path: "output/playwright/v0-2-1-home-th-mobile-light.png",
     fullPage: true,
   });
 
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto("/zh/");
   await page.screenshot({
-    path: "output/playwright/v0-2-home-zh-mobile-dark.png",
+    path: "output/playwright/v0-2-1-home-zh-mobile-dark.png",
     fullPage: true,
   });
 });

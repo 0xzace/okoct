@@ -49,6 +49,16 @@
   --space-16: 4rem;
   --space-20: 5rem;
   --space-24: 6rem;
+  --section-xs: 1.5rem;
+  --section-sm: 2.5rem;
+  --section-md: 4rem;
+  --section-lg: 6rem;
+  --section-xl: 8rem;
+  --section-xs-mobile: 1rem;
+  --section-sm-mobile: 1.5rem;
+  --section-md-mobile: 2.5rem;
+  --section-lg-mobile: 3.5rem;
+  --section-xl-mobile: 4.5rem;
   --radius-control: 0.625rem;
   --radius-card: 1.25rem;
   --radius-panel: 1.75rem;
@@ -150,6 +160,17 @@ a {
   max-width: 68ch;
 }
 
+.home-sections {
+  display: grid;
+  gap: var(--section-md-mobile);
+}
+
+@media (min-width: 1024px) {
+  .home-sections {
+    gap: var(--section-lg);
+  }
+}
+
 .surface-grid {
   background-image:
     linear-gradient(
@@ -194,6 +215,21 @@ a {
   transform: rotate(-8deg);
 }
 
+.hero-orbit {
+  transform-origin: center;
+  animation: hero-orbit 18s linear infinite;
+}
+
+@keyframes hero-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .transition-standard {
   transition:
     color var(--motion-fast) var(--ease-standard),
@@ -215,5 +251,9 @@ a {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .hero-orbit {
+    animation: none;
   }
 }
