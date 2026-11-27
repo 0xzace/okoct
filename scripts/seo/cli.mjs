@@ -20,6 +20,7 @@ function option(name, fallback) {
 const dist = resolve(option("dist", "dist"));
 const origin = option("origin", "https://okoct.com");
 const httpUrl = option("url", "");
+const siteOrigin = option("site-origin", "https://okoct.com");
 const outputDir = resolve(option("out", "seo-lab/reports"));
 const baselinePath = resolve(
   option("baseline", "seo-lab/baselines/seo-audit.json"),
@@ -33,7 +34,7 @@ async function buildReport() {
   const report = httpUrl
     ? analyzeCrawl({
         crawl: await crawlHttp({ origin: httpUrl }),
-        origin: httpUrl,
+        origin: siteOrigin,
       })
     : await analyzeSite({ dist, origin });
   await renderReports(report, outputDir);

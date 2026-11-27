@@ -103,6 +103,14 @@ function extractBodyIds(html) {
   );
 }
 
+function resolveAbsoluteUrl(value, base) {
+  try {
+    return new URL(value, base).toString();
+  } catch {
+    return value;
+  }
+}
+
 export function parseHtmlSnapshot({ url, html, status = 200, headers = {} }) {
   const origin = new URL(url).origin;
   const jsonLd = extractJsonLd(html);
@@ -144,7 +152,7 @@ export function parseHtmlSnapshot({ url, html, status = 200, headers = {} }) {
     )
     .map((attributes) => ({
       hreflang: attributes.hreflang,
-      href: normalizeUrl(attributes.href ?? "", url),
+      href: resolveAbsoluteUrl(attributes.href ?? "", url),
     }))
     .filter((alternate) => alternate.href);
 
@@ -249,7 +257,11 @@ export async function crawlHttp({
 }) {
   const start = normalizeUrl(origin, origin);
   if (!start) throw new Error(`Invalid crawl origin: ${origin}`);
-  const queue = [{ url: start, depth: 0 }];
+  const root = normalizeUrl("/", origin);
+  const queue = [
+    { url: start, depth: 0 },
+    ...(root && root !== start ? [{ url: root, depth: 0 }] : []),
+  ];
   const seen = new Set();
   const pages = [];
   const headers = { accept: "text/html,application/xhtml+xml" };
@@ -281,12 +293,21 @@ export async function crawlHttp({
     }
   }
 
+  const fetchText = async (path) => {
+    const response = await fetch(new URL(path, origin), {
+      signal: controllerFor(),
+    });
+    return response.ok ? response.text() : "";
+  };
+  const robots = await fetchText("/robots.txt");
+  const sitemapXml = await fetchText("/sitemap.xml");
+
   return {
     origin: new URL(origin).origin,
     pages,
-    robots: "",
-    sitemapXml: "",
-    sitemapUrls: [],
+    robots,
+    sitemapXml,
+    sitemapUrls: extractSitemapUrls(sitemapXml, origin),
     discoveredUrls: unique(pages.flatMap((page) => page.links)),
     source: "http",
   };
@@ -408,9 +429,13 @@ export function analyzeIndexability(pages) {
   }));
 }
 
-export function analyzeCanonical(pages, origin = "https://okoct.com") {
+export function analyzeCanonical(
+  pages,
+  origin = "https://okoct.com",
+  crawlOrigin = origin,
+) {
   const issues = [];
-  const urls = new Set(pages.map((page) => page.url));
+  const paths = new Set(pages.map((page) => new URL(page.url).pathname));
   for (const page of pages) {
     if (page.noindex || page.status !== 200) continue;
     if (!page.canonical) {
@@ -440,7 +465,12 @@ export function analyzeCanonical(pages, origin = "https://okoct.com") {
         }),
       );
     }
-    if (!urls.has(page.canonical)) {
+    const canonicalUrl = new URL(page.canonical);
+    const canonicalPath = canonicalUrl.pathname;
+    if (
+      canonicalUrl.origin !== new URL(crawlOrigin).origin &&
+      !paths.has(canonicalPath)
+    ) {
       issues.push(
         makeIssue({
           ruleId: "CANONICAL_TARGET",
@@ -457,10 +487,11 @@ export function analyzeCanonical(pages, origin = "https://okoct.com") {
   return issues;
 }
 
-export function analyzeSitemap(crawl) {
+export function analyzeSitemap(crawl, origin = crawl.origin) {
   const issues = [];
   const sitemapUrls = crawl.sitemapUrls;
   const seen = new Set();
+  const seenPaths = new Set(sitemapUrls.map((url) => new URL(url).pathname));
   for (const url of sitemapUrls) {
     if (seen.has(url))
       issues.push(
@@ -475,7 +506,13 @@ export function analyzeSitemap(crawl) {
         }),
       );
     seen.add(url);
-    const page = crawl.pages.find((entry) => entry.url === url);
+    const target = new URL(url);
+    const page = crawl.pages.find(
+      (entry) =>
+        entry.url === url ||
+        (target.origin === new URL(origin).origin &&
+          new URL(entry.url).pathname === target.pathname),
+    );
     if (!page)
       issues.push(
         makeIssue({
@@ -505,7 +542,7 @@ export function analyzeSitemap(crawl) {
     .filter((page) => page.status === 200 && !page.noindex)
     .map((page) => page.url);
   for (const url of expected) {
-    if (!seen.has(url))
+    if (!seen.has(url) && !seenPaths.has(new URL(url).pathname))
       issues.push(
         makeIssue({
           ruleId: "SITEMAP_MISSING",
@@ -655,8 +692,10 @@ export function analyzeInternalLinks(crawl) {
 
 export function analyzeHreflang(crawl) {
   const issues = [];
-  const pages = new Set(crawl.pages.map((page) => page.url));
+  const pages = new Set(crawl.pages.map((page) => new URL(page.url).pathname));
   const allowed = new Set(["th", "en", "zh-Hans", "x-default"]);
+  const samePath = (first, second) =>
+    new URL(first).pathname === new URL(second).pathname;
   for (const page of crawl.pages) {
     if (page.noindex || page.status !== 200) continue;
     const locales = new Set();
@@ -686,7 +725,13 @@ export function analyzeHreflang(crawl) {
           }),
         );
       locales.add(alternate.hreflang);
-      if (!pages.has(alternate.href))
+      if (
+        !pages.has(new URL(alternate.href).pathname) &&
+        !(
+          alternate.hreflang === "x-default" &&
+          new URL(alternate.href).pathname === "/"
+        )
+      )
         issues.push(
           makeIssue({
             ruleId: "HREFLANG_TARGET",
@@ -699,11 +744,13 @@ export function analyzeHreflang(crawl) {
               "Remove the relation or publish the reviewed translation.",
           }),
         );
-      const target = crawl.pages.find((entry) => entry.url === alternate.href);
+      const target = crawl.pages.find((entry) =>
+        samePath(entry.url, alternate.href),
+      );
       if (
         alternate.hreflang !== "x-default" &&
         target &&
-        !target.alternates.some((entry) => entry.href === page.url)
+        !target.alternates.some((entry) => samePath(entry.href, page.url))
       )
         issues.push(
           makeIssue({
@@ -721,7 +768,7 @@ export function analyzeHreflang(crawl) {
       !page.noindex &&
       page.status === 200 &&
       page.alternates.length > 0 &&
-      !page.alternates.some((entry) => entry.href === page.url)
+      !page.alternates.some((entry) => samePath(entry.href, page.url))
     )
       issues.push(
         makeIssue({
@@ -921,8 +968,8 @@ export function analyzeCrawl({
   const linkIssues = analyzeInternalLinks(crawl);
   const issues = [
     ...analyzeMetadata(crawl.pages),
-    ...analyzeCanonical(crawl.pages, origin),
-    ...analyzeSitemap(crawl),
+    ...analyzeCanonical(crawl.pages, origin, crawl.origin),
+    ...analyzeSitemap(crawl, origin),
     ...analyzeRobots(crawl),
     ...analyzeStructuredData(crawl.pages),
     ...linkIssues,
@@ -943,6 +990,7 @@ export function analyzeCrawl({
     generatedAt: new Date().toISOString(),
     ruleVersion: RULE_VERSION,
     origin: new URL(origin).origin,
+    crawlOrigin: crawl.origin,
     source: crawl.source,
     crawledUrls: crawl.pages.length,
     indexability,
