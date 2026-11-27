@@ -36,3 +36,12 @@ jobs:
 
       - name: Run complete verification
         run: pnpm verify
+
+      - name: Upload verified static artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: okoct-dist-${{ github.sha }}
+          path: dist
+          if-no-files-found: error
+          retention-days: 7

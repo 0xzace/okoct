@@ -1,0 +1,113 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: okoct-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_run' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: https://okoct.com
+
+    steps:
+      - name: Checkout source for manual deployment
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js for manual deployment
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.22.3
+          cache: pnpm
+
+      - name: Enable pnpm for manual deployment
+        if: github.event_name == 'workflow_dispatch'
+        run: corepack enable
+
+      - name: Install dependencies for manual deployment
+        if: github.event_name == 'workflow_dispatch'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build static site for manual deployment
+        if: github.event_name == 'workflow_dispatch'
+        run: pnpm build
+
+      - name: Download verified CI artifact
+        if: github.event_name == 'workflow_run'
+        uses: actions/download-artifact@v4
+        with:
+          name: okoct-dist-${{ github.event.workflow_run.head_sha }}
+          path: dist
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Validate static artifact
+        run: test -f dist/index.html && test -f dist/robots.txt && test -f dist/sitemap.xml
+
+      - name: Package static artifact
+        run: tar -C dist -czf "$RUNNER_TEMP/okoct-dist.tar.gz" .
+
+      - name: Configure deployment SSH
+        env:
+          DEPLOY_PRIVATE_KEY: ${{ secrets.OKOCT_DEPLOY_SSH_PRIVATE_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.OKOCT_DEPLOY_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOY_PRIVATE_KEY"
+          test -n "$DEPLOY_KNOWN_HOSTS"
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$DEPLOY_PRIVATE_KEY" > "$HOME/.ssh/okoct_deploy"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/okoct_deploy"
+          chmod 644 "$HOME/.ssh/known_hosts"
+          ssh-keygen -yf "$HOME/.ssh/okoct_deploy" >/dev/null
+
+      - name: Deploy to Alibaba Cloud VPS
+        env:
+          DEPLOY_HOST: ${{ secrets.OKOCT_DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.OKOCT_DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOY_HOST"
+          test -n "$DEPLOY_USER"
+          ssh_args=(-i "$HOME/.ssh/okoct_deploy" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -p 22)
+          remote_archive="/tmp/okoct-dist-${GITHUB_SHA}.tar.gz"
+          remote_stage="/tmp/okoct-release-${GITHUB_SHA}"
+          scp "${ssh_args[@]}" "$RUNNER_TEMP/okoct-dist.tar.gz" "${DEPLOY_USER}@${DEPLOY_HOST}:${remote_archive}"
+          ssh "${ssh_args[@]}" "${DEPLOY_USER}@${DEPLOY_HOST}" "set -euo pipefail
+            test \"\$(id -u)\" -ne 0
+            test -d /var/www/okoct
+            test ! -e '${remote_stage}'
+            sudo install -d -m 0755 '${remote_stage}'
+            sudo tar -xzf '${remote_archive}' -C '${remote_stage}'
+            sudo rsync -a --delete '${remote_stage}/' /var/www/okoct/
+            sudo chown -R root:root /var/www/okoct
+            sudo nginx -t
+            sudo systemctl reload nginx
+            sudo rm -rf '${remote_stage}' '${remote_archive}'
+          "
+
+      - name: Verify deployed website
+        run: |
+          curl --fail --silent --show-error --location --max-time 30 https://okoct.com/ >/dev/null
+          curl --fail --silent --show-error --location --max-time 30 https://okoct.com/robots.txt | grep -F 'User-agent: *'
+          curl --fail --silent --show-error --location --max-time 30 https://okoct.com/sitemap.xml | grep -F '<urlset'

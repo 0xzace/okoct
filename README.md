@@ -43,7 +43,7 @@ pnpm exec playwright test tests/e2e/accessibility.spec.ts
 
 V0.1 的内容 fixture 明确标记为 `draft`、`test-only` 和不可索引。正式医学内容必须具备可验证来源，并经过真实的事实核查、专业医学审核、合规审核和翻译审核后，才允许进入公开构建。自动化门禁不能替代专业人员审核。
 
-本地 Docker 镜像构建、Nginx 容器 HTTP/安全头检查已完成；部署、Cloudflare、Search Console、真实用户性能测量和正式医学审核目前仍为 Pending。本仓库不包含生产凭据，也没有执行生产部署。
+本地 Docker 镜像构建、Nginx 容器 HTTP/安全头检查和基础 VPS/DNS/TLS 部署已完成；GitHub Actions 自动部署仍需配置专用 SSH Secrets 后验证。Cloudflare、Search Console、真实用户性能测量和正式医学审核仍为 Pending。本仓库不包含生产凭据。
 
 ## 文档
 
