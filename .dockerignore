@@ -1,0 +1,12 @@
+node_modules
+dist
+.astro
+coverage
+playwright-report
+test-results
+.git
+.codegraph
+.superpowers
+.env
+.env.*
+!.env.example
