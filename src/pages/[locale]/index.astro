@@ -3,6 +3,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { LOCALE_PREFIXES, SUPPORTED_LOCALES, type Locale } from "../../i18n/config";
 import { getDictionary } from "../../i18n/dictionaries";
 import { getLocalizedPath } from "../../i18n/routes";
+import Container from "../../components/Container.astro";
+import ContentGrid from "../../components/ContentGrid.astro";
+import EditorialStandards from "../../components/EditorialStandards.astro";
+import EmptyState from "../../components/EmptyState.astro";
+import FeaturedContent from "../../components/FeaturedContent.astro";
+import HeroPanel from "../../components/HeroPanel.astro";
+import SafetyNotice from "../../components/SafetyNotice.astro";
+import SearchTrigger from "../../components/SearchTrigger.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import TopicCard from "../../components/TopicCard.astro";
 
 export function getStaticPaths() {
   return SUPPORTED_LOCALES.map((locale) => ({
@@ -14,25 +24,115 @@ export function getStaticPaths() {
 const { locale } = Astro.props as { locale: Locale };
 const dictionary = getDictionary(locale);
 const aboutPath = getLocalizedPath("about", locale);
+const safetyPath = getLocalizedPath("safety", locale);
 ---
 
 <BaseLayout locale={locale} route="home" title={`${dictionary.home.title} — OKOCT Health`} description={dictionary.home.description}>
-  <article class="space-y-12">
-    <header class="max-w-3xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand">{dictionary.home.eyebrow}</p>
-      <h1 class="mt-4 text-4xl font-bold tracking-tight text-ink sm:text-6xl">{dictionary.home.title}</h1>
-      <p class="mt-6 text-lg leading-8 text-ink-muted">{dictionary.home.description}</p>
-      {aboutPath && <a href={aboutPath} class="mt-8 inline-flex rounded-md bg-brand px-4 py-2 font-semibold text-white no-underline hover:bg-brand-strong">{dictionary.home.exploreLabel}</a>}
-    </header>
-    <div class="grid gap-5 md:grid-cols-2">
-      <section class="rounded-2xl border border-line bg-surface-raised p-6 shadow-sm">
-        <h2 class="text-xl font-semibold text-ink">{dictionary.home.scopeLabel}</h2>
-        <p class="mt-3 leading-7 text-ink-muted">{dictionary.home.scopeText}</p>
-      </section>
-      <section class="rounded-2xl border border-line bg-surface-raised p-6 shadow-sm">
-        <h2 class="text-xl font-semibold text-ink">{dictionary.home.statusLabel}</h2>
-        <p class="mt-3 leading-7 text-ink-muted">{dictionary.home.statusText}</p>
-      </section>
-    </div>
+  <article class="space-y-24">
+    <section>
+      <Container>
+        <HeroPanel
+          eyebrow={dictionary.home.eyebrow}
+          title={dictionary.home.title}
+          description={dictionary.home.description}
+          primaryHref={getLocalizedPath("search", locale) ?? "#knowledge-search"}
+          primaryLabel={dictionary.home.exploreLabel}
+          secondaryHref={aboutPath ?? "#editorial-standards"}
+          secondaryLabel={dictionary.home.secondaryLabel}
+        />
+      </Container>
+    </section>
+
+    <section id="knowledge-search" aria-labelledby="knowledge-search-title">
+      <Container class="max-w-5xl">
+        <div class="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+          <SectionHeading
+            id="knowledge-search-title"
+            eyebrow={dictionary.home.searchLabel}
+            title={dictionary.home.searchLabel}
+            description={dictionary.home.searchHint}
+          />
+          <SearchTrigger locale={locale} />
+        </div>
+      </Container>
+    </section>
+
+    <section aria-labelledby="topic-title">
+      <Container>
+        <SectionHeading
+          id="topic-title"
+          eyebrow={dictionary.home.topicEyebrow}
+          title={dictionary.home.topicTitle}
+          description={dictionary.home.topicDescription}
+        />
+        <ContentGrid class="mt-8">
+          {dictionary.home.topicCards.map((topic) => <TopicCard title={topic.title} text={topic.text} />)}
+        </ContentGrid>
+      </Container>
+    </section>
+
+    <section aria-labelledby="featured-title">
+      <Container>
+        <FeaturedContent
+          headingId="featured-title"
+          eyebrow={dictionary.home.featuredEyebrow}
+          title={dictionary.home.featuredTitle}
+          description={dictionary.home.featuredDescription}
+          emptyText={dictionary.home.featuredEmpty}
+        />
+      </Container>
+    </section>
+
+    <section aria-labelledby="glp1-title">
+      <Container>
+        <div class="grid gap-8 rounded-panel border border-line bg-surface-muted p-6 sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <SectionHeading
+            id="glp1-title"
+            eyebrow={dictionary.home.glp1Eyebrow}
+            title={dictionary.home.glp1Title}
+            description={dictionary.home.glp1Description}
+          />
+          <EmptyState title={dictionary.home.glp1Empty} description={dictionary.home.glp1Description} />
+        </div>
+      </Container>
+    </section>
+
+    <section aria-labelledby="safety-title">
+      <Container>
+        <SafetyNotice
+          id="safety-title"
+          title={dictionary.home.safetyTitle}
+          text={dictionary.home.safetyText}
+          href={safetyPath}
+          linkLabel={dictionary.home.safetyAction}
+        />
+      </Container>
+    </section>
+
+    <section aria-labelledby="research-title">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <SectionHeading
+            id="research-title"
+            eyebrow={dictionary.home.researchEyebrow}
+            title={dictionary.home.researchTitle}
+            description={dictionary.home.researchText}
+          />
+          <EmptyState title={dictionary.home.researchEmpty} description={dictionary.home.researchText} />
+        </div>
+      </Container>
+    </section>
+
+    <section id="editorial-standards" aria-labelledby="standards-title">
+      <Container>
+        <EditorialStandards
+          headingId="standards-title"
+          eyebrow={dictionary.home.standardsEyebrow}
+          title={dictionary.home.standardsTitle}
+          text={dictionary.home.standardsText}
+          items={dictionary.home.standardsItems}
+        />
+      </Container>
+    </section>
   </article>
 </BaseLayout>

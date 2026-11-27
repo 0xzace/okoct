@@ -2,15 +2,16 @@
 interface Props {
   title: string;
   text: string;
-  href?: string;
-  linkLabel?: string;
+  href?: string | undefined;
+  linkLabel?: string | undefined;
+  id?: string | undefined;
 }
 
-const { title, text, href, linkLabel } = Astro.props;
+const { title, text, href, linkLabel, id } = Astro.props;
 ---
 
 <aside class="rounded-panel border border-brand/30 bg-accent p-6" aria-label={title}>
-  <p class="text-sm font-semibold tracking-[0.08em] text-brand-strong">{title}</p>
+  <h2 id={id} class="font-display text-3xl font-bold tracking-[-0.03em] text-ink">{title}</h2>
   <p class="mt-3 max-w-2xl text-lg leading-8 text-ink">{text}</p>
   {href && linkLabel && (
     <a href={href} class="mt-5 inline-flex font-semibold text-brand-strong underline-offset-4 hover:underline">

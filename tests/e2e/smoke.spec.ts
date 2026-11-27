@@ -101,3 +101,60 @@ test("safety page states non-clinical boundaries", async ({ page }) => {
   await expect(page.getByText(/does not diagnose conditions/i)).toBeVisible();
   await expect(page.getByText(/does not .*sell medicines/i)).toBeVisible();
 });
+
+test("homepage exposes the editorial sections and truthful empty states", async ({
+  page,
+}) => {
+  await page.goto("/en/");
+
+  await expect(
+    page.getByRole("heading", {
+      name: "Understand health information with context",
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("search", { name: "Search knowledge" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      name: "Start with the question you want to understand",
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Reviewed content is being prepared" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "GLP-1 and weight management" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      name: "General knowledge is not personal care",
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Sources should be traceable" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Careful reading starts at the source" }),
+  ).toBeVisible();
+  await expect(
+    page.getByText(
+      "No approved health articles are available for publication yet.",
+    ),
+  ).toBeVisible();
+  await expect(page.locator("body")).not.toContainText("V0.1 test content");
+});
+
+test("Thai and Chinese homepages keep localized content within the viewport", async ({
+  page,
+}) => {
+  for (const path of ["/th/", "/zh/"]) {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(path);
+
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(390);
+    await expect(page.getByRole("main")).toBeVisible();
+  }
+});

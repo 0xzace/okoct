@@ -1,0 +1,21 @@
+---
+import EmptyState from "./EmptyState.astro";
+import SectionHeading from "./SectionHeading.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  emptyText: string;
+  headingId?: string | undefined;
+}
+
+const { eyebrow, title, description, emptyText, headingId } = Astro.props;
+---
+
+<section class="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+  <SectionHeading id={headingId} eyebrow={eyebrow} title={title} description={description} />
+  <div class="rounded-panel border border-dashed border-line bg-surface p-6 sm:p-8">
+    <EmptyState title={emptyText} description={description} />
+  </div>
+</section>

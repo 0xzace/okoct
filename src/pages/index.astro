@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Badge from "../components/Badge.astro";
+import Container from "../components/Container.astro";
 import { getLocalizedPath } from "../i18n/routes";
 
 const languageLinks = [
@@ -16,25 +18,30 @@ const languageLinks = [
   title="OKOCT Health — Choose a language"
   description="OKOCT Health is an independent, non-commercial health knowledge website for Thailand. Choose a language."
 >
-  <section class="mx-auto max-w-3xl py-8 text-center sm:py-16">
-    <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-brand">OKOCT Health</p>
-    <h1 class="text-4xl font-bold tracking-tight text-ink sm:text-6xl">OKOCT Health</h1>
-    <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-ink-muted">
-      Independent health knowledge for Thailand, with clear editorial and safety boundaries.
-    </p>
-    <nav aria-label="Choose a language" class="mt-10">
-      <ul class="flex flex-wrap justify-center gap-3">
+  <Container>
+    <section class="mx-auto max-w-4xl rounded-panel border border-line bg-surface p-7 shadow-panel sm:p-12">
+      <Badge tone="evidence">Independent health knowledge</Badge>
+      <h1 class="mt-6 max-w-3xl font-display text-5xl font-bold tracking-[-0.06em] text-ink sm:text-7xl">OKOCT Health</h1>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-ink-muted sm:text-xl">
+        A calm, source-aware place to understand health information for Thailand and beyond.
+      </p>
+      <nav aria-label="Choose a language" class="mt-10">
+        <p class="text-sm font-semibold text-ink">Choose how you want to read</p>
+        <ul class="mt-4 grid gap-3 sm:grid-cols-3">
         {languageLinks.map((link) => (
           <li>
             <a
               href={link.href}
-              class="inline-flex min-h-11 items-center rounded-full bg-brand px-5 py-2 font-semibold text-white no-underline transition hover:bg-brand-strong"
+              lang={link.name === "ไทย" ? "th" : link.name === "简体中文" ? "zh-Hans" : "en"}
+              class="transition-standard inline-flex min-h-12 items-center justify-between rounded-control border border-line bg-surface-muted px-5 py-3 font-semibold text-ink no-underline hover:border-brand hover:bg-accent hover:text-brand-strong"
             >
               {link.name}
+              <span aria-hidden="true">→</span>
             </a>
           </li>
         ))}
-      </ul>
-    </nav>
-  </section>
+        </ul>
+      </nav>
+    </section>
+  </Container>
 </BaseLayout>
