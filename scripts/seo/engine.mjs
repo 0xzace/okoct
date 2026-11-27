@@ -129,11 +129,17 @@ export function parseHtmlSnapshot({ url, html, status = 200, headers = {} }) {
     .map((attributes) => attributes.href)
     .filter(Boolean)
     .map((href) => {
-      const target = new URL(href, url);
+      const fragment = (() => {
+        try {
+          return new URL(href, url).hash.slice(1);
+        } catch {
+          return "";
+        }
+      })();
       return {
         href,
         url: normalizeUrl(href, url),
-        fragment: target.hash.slice(1),
+        fragment,
       };
     });
   const links = linkRefs.map((link) => link.url).filter(Boolean);

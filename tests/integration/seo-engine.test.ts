@@ -47,6 +47,15 @@ describe("SEO engine", () => {
     expect(page.jsonLd[0]).toMatchObject({ "@type": "WebPage" });
   });
 
+  it("keeps crawling when an HTML link URL is malformed", () => {
+    const page = parseHtmlSnapshot({
+      url: `${ORIGIN}/en/`,
+      html: `${validPage("/en/")}<a href="http://[">Broken URL</a>`,
+    });
+
+    expect(page.links).toEqual([`${ORIGIN}/th/`]);
+  });
+
   it("crawls a static dist directory without leaving the configured origin", async () => {
     const dist = await mkdtemp(join(tmpdir(), "okoct-seo-"));
     await mkdir(join(dist, "en"), { recursive: true });
