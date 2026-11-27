@@ -500,9 +500,7 @@
         "https://okoct.com/th/",
         "https://okoct.com/zh/"
       ],
-      "inbound": [
-        "https://okoct.com/"
-      ]
+      "inbound": ["https://okoct.com/"]
     },
     {
       "url": "https://okoct.com/en/",
