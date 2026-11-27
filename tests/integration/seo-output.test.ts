@@ -76,12 +76,25 @@ describe("generated SEO output", () => {
   });
 
   it("keeps the localized search page out of the sitemap", () => {
-    const searchPage = readOutput("th/search/index.html");
     const sitemap = readOutput("sitemap.xml");
 
-    expect(searchPage).toContain(
-      '<meta name="robots" content="noindex,nofollow"',
-    );
-    expect(sitemap).not.toContain("https://okoct.com/th/search/");
+    for (const locale of ["th", "en", "zh"]) {
+      expect(readOutput(`${locale}/search/index.html`)).toContain(
+        '<meta name="robots" content="noindex,nofollow"',
+      );
+      expect(sitemap).not.toContain(`https://okoct.com/${locale}/search/`);
+    }
+  });
+
+  it("excludes noindex and error pages from the Pagefind index", () => {
+    const pagefindEntry = JSON.parse(
+      readOutput("pagefind/pagefind-entry.json"),
+    ) as { languages: Record<string, { page_count: number }> };
+
+    expect(pagefindEntry.languages).toMatchObject({
+      en: { page_count: 4 },
+      th: { page_count: 3 },
+      "zh-hans": { page_count: 2 },
+    });
   });
 });

@@ -85,6 +85,10 @@ export type SiteDictionary = {
     noResults: string;
     loading: string;
     error: string;
+    resultCount: {
+      one: string;
+      other: string;
+    };
   };
   about: {
     title: string;
@@ -202,6 +206,7 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       noResults: "ไม่พบผลลัพธ์ที่ตรงกัน",
       loading: "กำลังค้นหา",
       error: "เกิดข้อผิดพลาดในการค้นหา",
+      resultCount: { one: "{count} ผลลัพธ์", other: "{count} ผลลัพธ์" },
     },
     about: {
       title: "เกี่ยวกับ OKOCT Health",
@@ -324,6 +329,7 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       noResults: "No matching results found.",
       loading: "Searching",
       error: "Search could not be completed.",
+      resultCount: { one: "{count} result", other: "{count} results" },
     },
     about: {
       title: "About OKOCT Health",
@@ -434,6 +440,7 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
       noResults: "没有找到匹配结果。",
       loading: "正在搜索",
       error: "搜索无法完成。",
+      resultCount: { one: "{count} 条结果", other: "{count} 条结果" },
     },
     about: {
       title: "关于 OKOCT Health",

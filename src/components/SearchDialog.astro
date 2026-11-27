@@ -17,6 +17,8 @@ const inputId = `search-page-query-${locale}`;
   data-no-results-label={dictionary.search.noResults}
   data-error-label={dictionary.search.error}
   data-hint-label={dictionary.search.hint}
+  data-result-one-label={dictionary.search.resultCount.one}
+  data-result-other-label={dictionary.search.resultCount.other}
 >
   <form role="search" aria-label={dictionary.search.label} class="rounded-panel border border-line bg-surface p-5 shadow-card sm:p-6">
     <label for={inputId} class="text-sm font-semibold text-ink">{dictionary.search.label}</label>
@@ -30,7 +32,7 @@ const inputId = `search-page-query-${locale}`;
       />
       <button
         type="submit"
-        class="transition-standard inline-flex min-h-11 items-center justify-center rounded-control border border-brand bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:border-brand-strong hover:bg-brand-strong"
+        class="transition-standard inline-flex min-h-11 items-center justify-center rounded-control border border-brand bg-brand px-5 py-2.5 text-sm font-semibold text-on-brand hover:border-brand-strong hover:bg-brand-strong"
       >
         {dictionary.search.submit}
       </button>
@@ -115,7 +117,14 @@ const inputId = `search-page-query-${locale}`;
           }),
         );
         renderResults(data);
-        status.textContent = `${data.length} result${data.length === 1 ? "" : "s"}`;
+        const resultLabel =
+          data.length === 1
+            ? container.dataset.resultOneLabel
+            : container.dataset.resultOtherLabel;
+        status.textContent = (resultLabel ?? "{count}").replace(
+          "{count}",
+          String(data.length),
+        );
       } catch {
         results.hidden = true;
         status.textContent = errorLabel;
@@ -124,24 +133,7 @@ const inputId = `search-page-query-${locale}`;
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      const query = input.value;
-      const url = new URL(window.location.href);
-
-      if (query.trim()) {
-        url.searchParams.set("q", query.trim());
-      } else {
-        url.searchParams.delete("q");
-      }
-
-      window.history.replaceState({}, "", url);
-      runSearch(query);
+      runSearch(input.value);
     });
-
-    const initialQuery = new URLSearchParams(window.location.search).get("q") ?? "";
-    input.value = initialQuery;
-
-    if (initialQuery) {
-      runSearch(initialQuery);
-    }
   });
 </script>

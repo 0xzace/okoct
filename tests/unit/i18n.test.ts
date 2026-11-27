@@ -38,6 +38,8 @@ describe("internationalization", () => {
       expect(dictionary.home.searchPlaceholder.length).toBeGreaterThan(0);
       expect(dictionary.home.horizon.label.length).toBeGreaterThan(0);
       expect(dictionary.search.noResults.length).toBeGreaterThan(0);
+      expect(dictionary.search.resultCount.one).toContain("{count}");
+      expect(dictionary.search.resultCount.other).toContain("{count}");
     }
 
     expect(getLocalizedPath("search", "zh-Hans")).toBe("/zh/search/");

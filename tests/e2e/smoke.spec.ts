@@ -180,3 +180,26 @@ test("search page is explicit about its indexability and content state", async (
     page.getByRole("search", { name: "Search OKOCT Health" }),
   ).toBeVisible();
 });
+
+test("search terms stay out of the URL", async ({ page }) => {
+  await page.goto("/en/search/");
+  const search = page.getByRole("search", { name: "Search OKOCT Health" });
+
+  await search.getByRole("searchbox").fill("health information");
+  await search.getByRole("button", { name: "Search" }).click();
+
+  await expect(page).toHaveURL(/\/en\/search\/$/);
+});
+
+test("secondary pages keep a shared horizontal gutter", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  for (const path of ["/en/about/", "/en/safety/"]) {
+    await page.goto(path);
+    const paddingLeft = await page
+      .locator("main")
+      .evaluate((element) => getComputedStyle(element).paddingLeft);
+
+    expect(paddingLeft).toBe("20px");
+  }
+});

@@ -76,7 +76,10 @@ const jsonLd = [
     </script>
     <SeoHead metadata={metadata} jsonLd={jsonLd} />
   </head>
-  <body class="flex min-h-screen flex-col">
+  <body
+    class="flex min-h-screen flex-col"
+    data-pagefind-ignore={indexable === false ? "true" : undefined}
+  >
     <a
       href="#main-content"
       class="sr-only absolute left-4 top-4 z-50 rounded-control bg-surface-raised px-4 py-3 text-sm font-semibold text-ink shadow-card focus:not-sr-only"
@@ -84,7 +87,11 @@ const jsonLd = [
       {dictionary.ui.skipToContent}
     </a>
     <SiteHeader locale={locale} route={route} />
-    <main id="main-content" tabindex="-1" class="flex-1 py-10 outline-none sm:py-14 lg:py-20">
+    <main
+      id="main-content"
+      tabindex="-1"
+      class="flex-1 px-5 py-10 outline-none sm:px-8 sm:py-14 lg:px-10 lg:py-20"
+    >
       <Breadcrumbs items={breadcrumbs} />
       <slot />
     </main>
