@@ -16,6 +16,7 @@
 - 根路径 `/` 是语言入口，不做 IP 强制跳转。
 - 语言路径为 `/th/`、`/en/`、`/zh/`。
 - Astro static build 生成目录式页面和真实 404 页面。
+- 404 页面使用 `noindex,nofollow`，不进入 sitemap 或公开内容集合。
 - Nginx 只提供构建产物，不进行应用层重写。
 
 ## Sitemap 与 robots
