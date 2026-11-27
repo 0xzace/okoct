@@ -48,6 +48,18 @@ describe("SEO metadata", () => {
     expect(metadata.title).toBe("Test page");
   });
 
+  it("supports a root language-entry canonical separate from localized pages", () => {
+    const metadata = buildSeoMetadata({
+      route: "home",
+      locale: "en",
+      title: "OKOCT Health",
+      description: "Choose a language.",
+      canonicalPath: "/",
+    });
+
+    expect(metadata.canonical).toBe("https://okoct.com/");
+  });
+
   it("builds truthful WebPage JSON-LD without medical claims", () => {
     const jsonLd = buildWebPageJsonLd({
       title: "About OKOCT Health",

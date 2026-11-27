@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { LOCALE_PREFIXES, SUPPORTED_LOCALES, type Locale } from "../../i18n/config";
+import { getDictionary } from "../../i18n/dictionaries";
+import { getLocalizedPath } from "../../i18n/routes";
+
+export function getStaticPaths() {
+  return SUPPORTED_LOCALES.map((locale) => ({
+    params: { locale: LOCALE_PREFIXES[locale] },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+const dictionary = getDictionary(locale);
+const homePath = getLocalizedPath("home", locale);
+---
+
+<BaseLayout
+  locale={locale}
+  route="about"
+  title={`${dictionary.about.title} — OKOCT Health`}
+  description={dictionary.about.description}
+  breadcrumbs={[{ name: dictionary.navigation.home, url: homePath ?? "/" }, { name: dictionary.about.title, url: getLocalizedPath("about", locale) ?? "/" }]}
+>
+  <article class="prose max-w-3xl">
+    <h1>{dictionary.about.title}</h1>
+    <p>{dictionary.about.body}</p>
+  </article>
+</BaseLayout>

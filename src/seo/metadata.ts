@@ -12,7 +12,7 @@ export function buildSeoMetadata(input: SeoInput): SeoMetadata {
     );
   }
 
-  const canonical = toAbsoluteUrl(localizedPath);
+  const canonical = toAbsoluteUrl(input.canonicalPath ?? localizedPath);
 
   return {
     title: input.title,

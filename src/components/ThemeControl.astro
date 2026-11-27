@@ -1,0 +1,62 @@
+---
+import type { SiteDictionary } from "../i18n/dictionaries";
+
+interface Props {
+  dictionary: SiteDictionary;
+}
+
+const { dictionary } = Astro.props;
+---
+
+<div class="flex items-center gap-2">
+  <label class="sr-only" for="theme-select">{dictionary.theme.label}</label>
+  <select
+    id="theme-select"
+    data-theme-control
+    aria-label={dictionary.theme.label}
+    class="rounded-md border border-line bg-surface-raised px-2 py-1 text-sm text-ink"
+  >
+    <option value="system">{dictionary.theme.system}</option>
+    <option value="light">{dictionary.theme.light}</option>
+    <option value="dark">{dictionary.theme.dark}</option>
+  </select>
+</div>
+
+<script is:inline>
+  const themeControl = document.querySelector("[data-theme-control]");
+  const themeStorageKey = "okoct-theme";
+
+  const applyTheme = (value) => {
+    if (value === "system") {
+      document.documentElement.removeAttribute("data-theme");
+    } else {
+      document.documentElement.dataset.theme = value;
+    }
+  };
+
+  if (themeControl instanceof HTMLSelectElement) {
+    let savedTheme;
+
+    try {
+      savedTheme = window.localStorage.getItem(themeStorageKey) ?? "system";
+    } catch {
+      savedTheme = "system";
+    }
+
+    if (!["system", "light", "dark"].includes(savedTheme)) {
+      savedTheme = "system";
+    }
+
+    themeControl.value = savedTheme;
+    applyTheme(savedTheme);
+    themeControl.addEventListener("change", () => {
+      applyTheme(themeControl.value);
+
+      try {
+        window.localStorage.setItem(themeStorageKey, themeControl.value);
+      } catch {
+        return;
+      }
+    });
+  }
+</script>

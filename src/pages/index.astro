@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getLocalizedPath } from "../i18n/routes";
+
+const languageLinks = [
+  { name: "ไทย", href: getLocalizedPath("home", "th") },
+  { name: "English", href: getLocalizedPath("home", "en") },
+  { name: "简体中文", href: getLocalizedPath("home", "zh-Hans") },
+].filter((link) => link.href);
+---
+
+<BaseLayout
+  locale="en"
+  route="home"
+  canonicalPath="/"
+  title="OKOCT Health — Choose a language"
+  description="OKOCT Health is an independent, non-commercial health knowledge website for Thailand. Choose a language."
+>
+  <section class="mx-auto max-w-3xl py-8 text-center sm:py-16">
+    <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-brand">OKOCT Health</p>
+    <h1 class="text-4xl font-bold tracking-tight text-ink sm:text-6xl">OKOCT Health</h1>
+    <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-ink-muted">
+      Independent health knowledge for Thailand, with clear editorial and safety boundaries.
+    </p>
+    <nav aria-label="Choose a language" class="mt-10">
+      <ul class="flex flex-wrap justify-center gap-3">
+        {languageLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="inline-flex min-h-11 items-center rounded-full bg-brand px-5 py-2 font-semibold text-white no-underline transition hover:bg-brand-strong"
+            >
+              {link.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </section>
+</BaseLayout>

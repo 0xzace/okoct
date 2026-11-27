@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { LOCALE_PREFIXES, type Locale } from "../../i18n/config";
+import { getDictionary } from "../../i18n/dictionaries";
+import { getRouteLocales, getLocalizedPath } from "../../i18n/routes";
+
+export function getStaticPaths() {
+  return getRouteLocales("safety").map((locale) => ({
+    params: { locale: LOCALE_PREFIXES[locale] },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+const dictionary = getDictionary(locale);
+const homePath = getLocalizedPath("home", locale);
+---
+
+<BaseLayout
+  locale={locale}
+  route="safety"
+  title={`${dictionary.safety.title} — OKOCT Health`}
+  description={dictionary.safety.description}
+  breadcrumbs={[{ name: dictionary.navigation.home, url: homePath ?? "/" }, { name: dictionary.safety.title, url: getLocalizedPath("safety", locale) ?? "/" }]}
+>
+  <article class="max-w-3xl space-y-8">
+    <header>
+      <h1 class="text-4xl font-bold tracking-tight text-ink">{dictionary.safety.title}</h1>
+      <p class="mt-6 text-lg leading-8 text-ink-muted">{dictionary.safety.body}</p>
+    </header>
+    <aside class="rounded-2xl border border-brand bg-accent p-6 text-ink" aria-label="Safety notice">
+      <p class="font-semibold">{dictionary.safety.warning}</p>
+    </aside>
+  </article>
+</BaseLayout>

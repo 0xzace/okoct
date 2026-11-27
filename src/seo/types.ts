@@ -13,6 +13,7 @@ export type SeoInput = {
   locale: Locale;
   title: string;
   description: string;
+  canonicalPath?: string;
   indexable?: boolean;
   ogType?: "website" | "article";
   image?: string;

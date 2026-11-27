@@ -1,0 +1,74 @@
+---
+import "../styles/global.css";
+
+import { getDictionary, type Locale } from "../i18n/config";
+import type { RouteKey } from "../i18n/routes";
+import {
+  buildBreadcrumbJsonLd,
+  buildWebPageJsonLd,
+  buildWebSiteJsonLd,
+  type BreadcrumbItem,
+} from "../seo/structured-data";
+import { buildSeoMetadata } from "../seo/metadata";
+import SeoHead from "../components/SeoHead.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+
+interface Props {
+  locale: Locale;
+  route: RouteKey;
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const {
+  locale,
+  route,
+  title,
+  description,
+  canonicalPath,
+  breadcrumbs = [],
+} = Astro.props;
+const dictionary = getDictionary(locale);
+const metadata = buildSeoMetadata({
+  route,
+  locale,
+  title,
+  description,
+  ...(canonicalPath !== undefined ? { canonicalPath } : {}),
+});
+const jsonLd = [
+  buildWebSiteJsonLd(dictionary.home.description),
+  buildWebPageJsonLd({
+    title,
+    description,
+    url: metadata.canonical,
+    locale,
+  }),
+  ...(breadcrumbs.length > 0 ? [buildBreadcrumbJsonLd(breadcrumbs)] : []),
+];
+---
+
+<!doctype html>
+<html lang={locale} dir="ltr">
+  <head>
+    <SeoHead metadata={metadata} jsonLd={jsonLd} />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#main-content"
+      class="sr-only absolute left-3 top-3 z-50 rounded-md bg-surface-raised px-3 py-2 text-ink focus:not-sr-only"
+    >
+      Skip to content
+    </a>
+    <SiteHeader locale={locale} route={route} />
+    <main id="main-content" class="mx-auto w-full max-w-6xl flex-1 px-5 py-10 sm:px-8 lg:py-16">
+      <Breadcrumbs items={breadcrumbs} />
+      <slot />
+    </main>
+    <SiteFooter locale={locale} />
+  </body>
+</html>

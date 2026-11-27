@@ -3,6 +3,12 @@ import type { Locale } from "./config";
 export type SiteDictionary = {
   languageName: string;
   languageSwitcherLabel: string;
+  theme: {
+    label: string;
+    system: string;
+    light: string;
+    dark: string;
+  };
   navigation: {
     home: string;
     about: string;
@@ -38,6 +44,7 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
   th: {
     languageName: "ไทย",
     languageSwitcherLabel: "ภาษา",
+    theme: { label: "ธีม", system: "ระบบ", light: "สว่าง", dark: "มืด" },
     navigation: {
       home: "หน้าแรก",
       about: "เกี่ยวกับเรา",
@@ -73,6 +80,7 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
   en: {
     languageName: "English",
     languageSwitcherLabel: "Language",
+    theme: { label: "Theme", system: "System", light: "Light", dark: "Dark" },
     navigation: { home: "Home", about: "About", safety: "Safety boundaries" },
     home: {
       eyebrow: "Independent health knowledge",
@@ -106,6 +114,7 @@ const DICTIONARIES: Record<Locale, SiteDictionary> = {
   "zh-Hans": {
     languageName: "简体中文",
     languageSwitcherLabel: "语言",
+    theme: { label: "主题", system: "跟随系统", light: "浅色", dark: "深色" },
     navigation: { home: "首页", about: "关于我们", safety: "安全边界" },
     home: {
       eyebrow: "独立健康知识",
