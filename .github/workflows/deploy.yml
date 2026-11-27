@@ -32,16 +32,18 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         uses: actions/checkout@v4
 
+      - name: Setup pnpm for manual deployment
+        if: github.event_name == 'workflow_dispatch'
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.24.0
+
       - name: Setup Node.js for manual deployment
         if: github.event_name == 'workflow_dispatch'
         uses: actions/setup-node@v4
         with:
           node-version: 24.22.3
           cache: pnpm
-
-      - name: Enable pnpm for manual deployment
-        if: github.event_name == 'workflow_dispatch'
-        run: corepack enable
 
       - name: Install dependencies for manual deployment
         if: github.event_name == 'workflow_dispatch'
