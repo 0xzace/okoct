@@ -21,6 +21,7 @@ interface Props {
   title: string;
   description: string;
   canonicalPath?: string;
+  indexable?: boolean;
   breadcrumbs?: BreadcrumbItem[];
 }
 
@@ -30,6 +31,7 @@ const {
   title,
   description,
   canonicalPath,
+  indexable,
   breadcrumbs = [],
 } = Astro.props;
 const dictionary = getDictionary(locale);
@@ -39,6 +41,7 @@ const metadata = buildSeoMetadata({
   title,
   description,
   ...(canonicalPath !== undefined ? { canonicalPath } : {}),
+  ...(indexable !== undefined ? { indexable } : {}),
 });
 const jsonLd = [
   buildWebSiteJsonLd(dictionary.home.description),

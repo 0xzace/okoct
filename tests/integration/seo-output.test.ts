@@ -68,4 +68,10 @@ describe("generated SEO output", () => {
     expect(html).not.toContain("V0.1 test content");
     expect(html).not.toContain("v0-1-test-content");
   });
+
+  it("keeps the not-found page out of search indexes", () => {
+    expect(readOutput("404.html")).toContain(
+      '<meta name="robots" content="noindex,nofollow"',
+    );
+  });
 });

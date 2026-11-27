@@ -95,6 +95,12 @@ for (const [relativePath, language, canonical] of publicPages) {
   }
 }
 
+const notFoundPage = await readOutput("404.html");
+
+if (!notFoundPage.includes('<meta name="robots" content="noindex,nofollow"')) {
+  errors.push("404.html: not-found page must be noindex,nofollow");
+}
+
 const sitemap = await readOutput("sitemap.xml");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
   (match) => match[1],
