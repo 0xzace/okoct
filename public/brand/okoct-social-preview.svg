@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">OKOCT Health social preview</title>
+  <desc id="desc">Independent health knowledge with clear editorial boundaries.</desc>
+  <rect width="1200" height="630" fill="#0b252b"/>
+  <path d="M0 500c220-120 360-40 560-110s380-180 640-70v310H0Z" fill="#12383a"/>
+  <path d="M60 450h1080" stroke="#6ed7c5" stroke-width="2" opacity=".7"/>
+  <path d="M170 450c90-160 140-220 215-220s125 60 215 220" fill="none" stroke="#e2bd6b" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="385" cy="230" r="8" fill="#e2bd6b"/>
+  <text x="80" y="120" fill="#e8f3f1" font-family="Tahoma, Arial, sans-serif" font-size="54" font-weight="700">OKOCT Health</text>
+  <text x="84" y="175" fill="#a7c5c2" font-family="Tahoma, Arial, sans-serif" font-size="24">Independent health knowledge for Thailand</text>
+</svg>

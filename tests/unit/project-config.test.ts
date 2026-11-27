@@ -8,7 +8,7 @@ describe("SITE_CONFIG", () => {
     expect(SITE_CONFIG.domain).toBe("okoct.com");
     expect(SITE_CONFIG.defaultLocale).toBe("th");
     expect(SITE_CONFIG.locales).toEqual(["th", "en", "zh-Hans"]);
-    expect(SITE_CONFIG.version).toBe("0.1.0");
+    expect(SITE_CONFIG.version).toBe("0.2.0");
   });
 
   it("does not expose credentials or private environment values", () => {
