@@ -3,6 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import type { Locale } from "../i18n/config";
 import type { RouteKey } from "../i18n/routes";
 import type { BreadcrumbItem } from "../seo/structured-data";
+import type { AlternateLink } from "../seo/types";
 
 interface Props {
   locale: Locale;
@@ -12,6 +13,7 @@ interface Props {
   canonicalPath?: string;
   indexable?: boolean;
   breadcrumbs?: BreadcrumbItem[];
+  alternates?: AlternateLink[];
 }
 
 const props = Astro.props;

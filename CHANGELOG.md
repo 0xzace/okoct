@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.3.0] - 2026-11-27
+
+### Added
+
+- V0.3 Content Engine 的实体 schema、生命周期、revision/hash 审核失效和统一 repository。
+- 主题集群、关键词、内容 brief、参考文献验证、内部链接、翻译关系和内容审计模型。
+- Fail-Closed publication gate、只生成已批准文章/主题路径的 Astro 页面、sitemap/hreflang/Pagefind 泄漏防线。
+- 内容 CLI、12 项非公开初始 brief、10 个待研究 seed keywords 和 V0.3 验证证据。
+
+### Verified
+
+- TypeScript、ESLint、Prettier、Vitest 47/47、集成测试 15/15、Astro/Pagefind 构建、SEO 产物校验和 Playwright E2E 27/27 已在本地运行通过。
+- 当前 dist 只有既有公共页面；没有正式医学文章、主题页或公开 brief。
+
+### Pending
+
+- 真实关键词研究、正式医学/法律/翻译审核、真实作者和审核人身份、Search Console、真实用户性能和生产发布授权仍未完成。
+
 ## [0.2.1] - 2026-11-27
 
 ### Added

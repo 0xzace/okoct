@@ -25,11 +25,14 @@
 - 完成 axe、生产预览视觉测试和 Lighthouse 实验室基线；最终 Docker 证据见 [V0.2.1 验证记录](../evidence/V0.2.1-VERIFICATION.md)。
 - 正式医学审核、法律/隐私门、真实用户性能和生产发布仍为 Pending。
 
-## V0.3 — 实验和可观测性（Proposed）
+## V0.3 — Content Engine（VERIFIED；专业内容门仍 Pending）
 
-- 记录 SEO 实验假设、基线、观察窗口、结果和限制。
-- 评估隐私合规后的最小分析方案。
-- 分离实验室性能和真实用户性能证据。
+- 建立 Git + Astro Content Collections + Zod 内容实体和统一 repository。
+- 建立主题集群、关键词、brief、参考资料、审核记录和 fail-closed 发布门禁。
+- 生成经过门禁的文章/专题页面，集成内部链接、翻译关系、sitemap、hreflang 和 Pagefind。
+- 建立 CLI、内容质量审计和首批 12 项非公开内容规划。
+- 正式医学/法律/翻译审核、真实关键词 API、Search Console 和生产发布仍为 Pending。
+- 工程验证证据见 [V0.3 验证记录](../evidence/V0.3-VERIFICATION.md)。
 
 ## 不在路线图默认范围内
 

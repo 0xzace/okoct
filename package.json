@@ -1,6 +1,6 @@
 {
   "name": "okoct",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "OKOCT Health independent health knowledge website",
   "type": "module",
@@ -23,6 +23,11 @@
     "test:e2e": "playwright test",
     "validate:content": "node scripts/validate-content.mjs",
     "validate:seo": "node scripts/validate-build.mjs",
+    "content": "node scripts/content-cli.mjs",
+    "content:list": "node scripts/content-cli.mjs content:list",
+    "content:validate": "node scripts/content-cli.mjs content:validate",
+    "content:audit": "node scripts/content-cli.mjs content:audit",
+    "publication:check": "node scripts/content-cli.mjs publication:check",
     "verify:static": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm validate:content && pnpm test:unit && pnpm build && pnpm test:integration && pnpm validate:seo",
     "verify": "pnpm verify:static && pnpm test:e2e"
   },

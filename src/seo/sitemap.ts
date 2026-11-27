@@ -2,12 +2,20 @@ import { SITE_CONFIG, type SiteLocale } from "../config/site";
 import { getLocalizedPath } from "../i18n/routes";
 import { getRouteLocales, type RouteKey } from "../i18n/routes";
 import { toAbsoluteUrl } from "./urls";
+import type { ArticleEntity } from "../content-engine/schemas/entities";
+import { filterPublicBuild } from "../content-engine/publication/build-filter";
+import type { PublicationContext } from "../content-engine/publication/gate";
 
 export type PublicRouteRecord = {
   route: RouteKey;
   locale: SiteLocale;
   path: string;
   url: string;
+};
+
+export type PublicContentSitemapInput = {
+  articles: readonly ArticleEntity[];
+  context: PublicationContext;
 };
 
 export function getPublicRouteRecords(): PublicRouteRecord[] {
@@ -26,10 +34,26 @@ export function getPublicRouteRecords(): PublicRouteRecord[] {
   return records;
 }
 
-export function getSitemapUrls(): string[] {
+export function getPublicArticleRouteRecords(
+  input: PublicContentSitemapInput,
+): PublicRouteRecord[] {
+  return filterPublicBuild(input.articles, input.context).map((article) => ({
+    route: "home",
+    locale: article.locale,
+    path: `/${article.locale === "zh-Hans" ? "zh" : article.locale}/articles/${article.slug}/`,
+    url: toAbsoluteUrl(
+      `/${article.locale === "zh-Hans" ? "zh" : article.locale}/articles/${article.slug}/`,
+    ),
+  }));
+}
+
+export function getSitemapUrls(input?: PublicContentSitemapInput): string[] {
   return [
     toAbsoluteUrl("/"),
     ...getPublicRouteRecords().map((record) => record.url),
+    ...(input
+      ? getPublicArticleRouteRecords(input).map((record) => record.url)
+      : []),
   ];
 }
 

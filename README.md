@@ -1,6 +1,6 @@
 # OKOCT Health
 
-OKOCT Health 是面向泰国市场的独立、非商业健康知识网站。当前版本为 `0.2.1`，在 V0.1 的 SEO First、国际化、静态生成和合规优先基础上，完成科学编辑型设计系统的视觉收敛、内容驱动首页、移动端导航和生产预览质量验证；当前仍不发布正式医学文章。
+OKOCT Health 是面向泰国市场的独立、非商业健康知识网站。当前版本为 `0.3.0`，在 V0.1 的 SEO First、国际化、静态生成和合规优先基础上，完成科学编辑型设计系统的视觉收敛，并进入 Content Engine 建设；当前仍不发布未经真实专业审核的正式医学文章。
 
 ## 当前范围
 
@@ -10,6 +10,7 @@ OKOCT Health 是面向泰国市场的独立、非商业健康知识网站。当�
 - 语义 HTML、键盘焦点、深色/浅色/系统主题和 reduced-motion 基础支持。
 - Evidence Horizon 品牌资产、CSS Design Tokens、原生 Astro 组件、响应式首页和 noindex 搜索页。
 - 内容为空时隐藏重复的文章/研究区块；正式内容必须通过发布门禁后才显示摘要。
+- V0.3 Content Engine：类型安全实体、主题/关键词/brief、参考文献、审核记录、生命周期、统一 repository、fail-closed 发布门禁、文章页面和内容审计。
 - 移动端紧凑导航、Escape/焦点管理、axe-core 检查、生产构建截图和 Lighthouse 实验室基线。
 - Vitest、Playwright、TypeScript、ESLint、Prettier、Pagefind、Docker、Nginx 和 GitHub Actions 配置。
 
@@ -59,3 +60,5 @@ V0.1 的内容 fixture 明确标记为 `draft`、`test-only` 和不可索引。�
 - [V0.2.1 设计说明](docs/superpowers/specs/2026-11-27-okoct-v0.2.1-visual-refinement-design.md)
 - [V0.2.1 实施计划](docs/superpowers/plans/2026-11-27-okoct-v0.2.1-visual-refinement-plan.md)
 - [V0.2.1 验证证据](docs/evidence/V0.2.1-VERIFICATION.md)
+- [V0.3 内容架构](docs/content/CONTENT-ARCHITECTURE.md)
+- [V0.3 任务状态](docs/roadmap/V0.3-TASKS.md)

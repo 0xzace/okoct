@@ -34,3 +34,10 @@
 - 决策：使用原生 `select`、`localStorage` 和一个 inline script，页面内容不依赖脚本。
 - 原因：保留键盘可用性、降低 hydration 成本，并支持系统偏好。
 - 代价：需要持续检查 CSP 和无脚本降级行为。
+
+## ADR-006：V0.3 以 Git 内容记录和统一 Repository 为唯一生产读取层
+
+- 状态：Accepted for V0.3
+- 决策：公开文章使用 Astro Content Collections；关键词、主题、brief 和参考资料使用 Git 管理记录；生产页面只能通过 repository 和 fail-closed publication gate 读取。
+- 原因：在不引入数据库或 CMS 的前提下保留版本历史、可审计性和静态生成能力，并阻止页面绕过审核记录。
+- 代价：内容变更需要重新构建；editorial 与公开 frontmatter 的关系必须持续通过引用校验维护。

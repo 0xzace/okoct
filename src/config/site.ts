@@ -3,7 +3,7 @@ export const SITE_CONFIG = {
   shortName: "OKOCT",
   domain: "okoct.com",
   url: "https://okoct.com",
-  version: "0.2.0",
+  version: "0.3.0",
   socialPreviewPath: "/brand/okoct-social-preview.svg",
   defaultLocale: "th",
   locales: ["th", "en", "zh-Hans"],

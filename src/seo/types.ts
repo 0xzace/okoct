@@ -17,6 +17,7 @@ export type SeoInput = {
   indexable?: boolean;
   ogType?: "website" | "article";
   image?: string;
+  alternates?: AlternateLink[];
 };
 
 export type SeoMetadata = {

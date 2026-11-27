@@ -27,6 +27,15 @@
 - [ ] 隐私政策、Cookie 和分析评估 — PENDING
 - [ ] 生产秘密、TLS、Cloudflare 和 VPS 配置审查 — PENDING
 
+## V0.3 工程门
+
+- [x] 内容架构、实体 schema、生命周期和 repository — VERIFIED；见 `docs/content/`
+- [x] 参考文献、审核记录和 fail-closed publication gate — VERIFIED；无真实医学批准被自动化制造
+- [x] 文章/主题静态路径、首页、sitemap、hreflang、Pagefind 泄漏检查 — VERIFIED；当前公开文章为 0
+- [x] 关键词、brief、主题集群、内部链接、翻译关系和内容审计 — VERIFIED；未知研究指标保持 null
+- [x] CLI 和首批 12 项非公开内容规划 — VERIFIED
+- [x] V0.3 完整本地验证 — VERIFIED；证据见 `docs/evidence/V0.3-VERIFICATION.md`
+
 ## 生产发布门
 
 - [ ] 生产构建包签名/制品留档 — PENDING

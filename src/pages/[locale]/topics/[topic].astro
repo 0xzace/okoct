@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import ContentGrid from "../../../components/ContentGrid.astro";
+import { LOCALE_PREFIXES, SUPPORTED_LOCALES, type Locale } from "../../../i18n/config";
+import { getDictionary } from "../../../i18n/dictionaries";
+import { getLocalizedPath } from "../../../i18n/routes";
+import { getPublicTopicPaths } from "../../../content-engine/page-paths";
+import { articleEntitySchema, type Topic } from "../../../content-engine/schemas/entities";
+import { INITIAL_TOPICS } from "../../../content-engine/data/planning";
+
+export async function getStaticPaths() {
+  const emptyPublicationContext = { authors: [], reviewers: [], references: [], reviews: [], approvals: [] };
+  const entries = await getCollection("articles");
+  const articles = entries
+    .map((entry) => articleEntitySchema.safeParse(entry.data).success ? articleEntitySchema.parse(entry.data) : undefined)
+    .filter((entry): entry is NonNullable<typeof entry> => entry !== undefined);
+  const topics = INITIAL_TOPICS as Topic[];
+
+  return SUPPORTED_LOCALES.flatMap((locale) =>
+    getPublicTopicPaths(topics, articles, emptyPublicationContext, locale).map((path) => ({
+      params: { locale: LOCALE_PREFIXES[locale], topic: path.slug },
+      props: { topic: path.topic, locale },
+    })),
+  );
+}
+
+const { topic, locale } = Astro.props as { topic: Topic; locale: Locale };
+const dictionary = getDictionary(locale);
+const homePath = getLocalizedPath("home", locale) ?? `/${LOCALE_PREFIXES[locale]}/`;
+const topicPath = `/${LOCALE_PREFIXES[locale]}/topics/${topic.slug}/`;
+---
+
+<ArticleLayout
+  locale={locale}
+  route="home"
+  canonicalPath={topicPath}
+  title={`${topic.title} — OKOCT Health`}
+  description={topic.description}
+  breadcrumbs={[{ name: dictionary.navigation.home, url: homePath }, { name: topic.title, url: topicPath }]}
+>
+  <header>
+    <p class="text-sm font-semibold tracking-[0.08em] text-brand">Knowledge topic</p>
+    <h1 class="mt-3 font-display text-4xl font-bold tracking-[-0.05em] text-ink sm:text-5xl">{topic.title}</h1>
+    <p class="mt-5 text-lg leading-8 text-ink-muted">{topic.description}</p>
+  </header>
+  <ContentGrid class="mt-8" />
+</ArticleLayout>

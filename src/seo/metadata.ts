@@ -29,7 +29,7 @@ export function buildSeoMetadata(input: SeoInput): SeoMetadata {
       image: toAbsoluteUrl(input.image ?? SITE_CONFIG.socialPreviewPath),
     },
     alternates: [
-      ...getHreflangLinks(input.route),
+      ...(input.alternates ?? getHreflangLinks(input.route)),
       { hreflang: "x-default", href: toAbsoluteUrl("/") },
     ],
   };

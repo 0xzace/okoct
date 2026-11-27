@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+
+import ArticleBody from "../../../components/ArticleBody.astro";
+import ArticleHeader from "../../../components/ArticleHeader.astro";
+import ArticleMeta from "../../../components/ArticleMeta.astro";
+import EvidenceNote from "../../../components/EvidenceNote.astro";
+import MedicalDisclaimer from "../../../components/MedicalDisclaimer.astro";
+import ReferenceList from "../../../components/ReferenceList.astro";
+import RelatedArticles from "../../../components/RelatedArticles.astro";
+import SafetyNotice from "../../../components/SafetyNotice.astro";
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import { LOCALE_PREFIXES, SUPPORTED_LOCALES, type Locale } from "../../../i18n/config";
+import { getDictionary } from "../../../i18n/dictionaries";
+import { getLocalizedPath } from "../../../i18n/routes";
+import { getPublicArticlePaths } from "../../../content-engine/page-paths";
+import { articleEntitySchema } from "../../../content-engine/schemas/entities";
+
+export async function getStaticPaths() {
+  const emptyPublicationContext = { authors: [], reviewers: [], references: [], reviews: [], approvals: [] };
+  const entries = await getCollection("articles");
+  const articles = entries
+    .map((entry) => articleEntitySchema.safeParse(entry.data).success ? articleEntitySchema.parse(entry.data) : undefined)
+    .filter((entry): entry is NonNullable<typeof entry> => entry !== undefined);
+
+  return SUPPORTED_LOCALES.flatMap((locale) =>
+    getPublicArticlePaths(articles, emptyPublicationContext, locale).map((path) => ({
+      params: { locale: LOCALE_PREFIXES[locale], slug: path.slug },
+      props: { article: path.article, entry: entries.find((entry) => entry.data.slug === path.slug) },
+    })),
+  );
+}
+
+const { article, entry } = Astro.props as { article: NonNullable<ReturnType<typeof articleEntitySchema.parse>>; entry: Awaited<ReturnType<typeof getCollection<"articles">>>[number] };
+const locale = article.locale as Locale;
+const dictionary = getDictionary(locale);
+const renderedHtml = entry.rendered?.html ?? "";
+const homePath = getLocalizedPath("home", locale) ?? `/${LOCALE_PREFIXES[locale]}/`;
+const articlePath = `/${LOCALE_PREFIXES[locale]}/articles/${article.slug}/`;
+const formatDate = (value: Date | null | undefined) => value?.toISOString().slice(0, 10);
+---
+
+<ArticleLayout
+  locale={locale}
+  route="home"
+  canonicalPath={articlePath}
+  title={`${article.title} — OKOCT Health`}
+  description={article.description}
+  breadcrumbs={[{ name: dictionary.navigation.home, url: homePath }, { name: article.title, url: articlePath }]}
+>
+  <ArticleHeader eyebrow={article.type} title={article.title} description={article.summary} />
+  <ArticleMeta publishedAt={formatDate(article.publishedAt)} updatedAt={formatDate(article.updatedAt)} />
+  <div class="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_16rem]">
+    <div>
+      <ArticleBody><div set:html={renderedHtml} /></ArticleBody>
+      <EvidenceNote title="Evidence and review" text="This page is generated only after the content publication gate has accepted the current version." />
+      <ReferenceList title="References" sources={[]} />
+      <SafetyNotice title="General information" text="This educational content does not replace advice from a qualified health professional." />
+      <RelatedArticles title="Related articles" emptyText="No related articles are available." />
+      <MedicalDisclaimer title={dictionary.footer.disclaimer} text={dictionary.safety.warning} />
+    </div>
+  </div>
+</ArticleLayout>

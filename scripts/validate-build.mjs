@@ -123,9 +123,9 @@ for (const requiredLine of [
   }
 }
 
-if (await exists(dist)) {
-  const files = await collectFiles(dist);
+const files = (await exists(dist)) ? await collectFiles(dist) : [];
 
+if (files.length > 0) {
   for (const filePath of files) {
     if (!/\.(html|xml|txt|js|css)$/.test(filePath)) {
       continue;
@@ -135,12 +135,28 @@ if (await exists(dist)) {
 
     if (
       content.includes("V0.1 test content") ||
-      content.includes("v0-1-test-content")
+      content.includes("v0-1-test-content") ||
+      /editorial\/|seo-lab\/|REVREC-|APPROVAL-|BRIEF-000001/.test(content)
     ) {
       errors.push(
         `${relative(process.cwd(), filePath)}: contains excluded test content`,
       );
     }
+  }
+}
+
+for (const filePath of files) {
+  const relativePath = relative(dist, filePath);
+  if (!/^(th|en|zh)\/(articles|topics)\/.+\/index\.html$/.test(relativePath))
+    continue;
+  const html = await readFile(filePath, "utf8");
+  if (
+    !/<title>[^<]+<\/title>/.test(html) ||
+    !/<link rel="canonical"/.test(html)
+  ) {
+    errors.push(
+      `${relativePath}: dynamic content page is missing SEO metadata`,
+    );
   }
 }
 
