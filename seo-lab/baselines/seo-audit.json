@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-11-27T08:21:08.216Z",
+  "generatedAt": "2026-11-27T08:29:45.125Z",
   "ruleVersion": "0.4.0",
   "origin": "https://okoct.com",
+  "crawlOrigin": "https://okoct.com",
   "source": "dist",
   "crawledUrls": 12,
   "indexability": [
@@ -500,7 +501,9 @@
         "https://okoct.com/th/",
         "https://okoct.com/zh/"
       ],
-      "inbound": ["https://okoct.com/"]
+      "inbound": [
+        "https://okoct.com/"
+      ]
     },
     {
       "url": "https://okoct.com/en/",
